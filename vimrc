@@ -24,9 +24,9 @@ endif
 
 " Tab settings
 set expandtab          " Expand tabs into spaces
-set tabstop=2          " default to 2 spaces for a hard tab
-set softtabstop=2      " default to 2 spaces for the soft tab
-set shiftwidth=2       " for when <TAB> is pressed at the beginning of a line
+set tabstop=4          " default spaces for a hard tab
+set softtabstop=4      " default spaces for the soft tab
+set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 
 " Mouse settings
 if has('mouse')
@@ -54,40 +54,42 @@ let g:airline#extensions#tabline#enabled = 1
 
 "" vim-nerdtree-tabs
 let g:nerdtree_tabs_open_on_console_startup = 0       " don't open NERDTree on startup
+autocmd FileType nerdtree noremap <buffer> <C-Left> <Nop>
+autocmd FileType nerdtree noremap <buffer> <C-Right> <Nop>
 
 " Indexer
 "" vim-easytags
-set tags=./tags;                                      " let Vim walk up directory hierarchy looking for tags file
-let g:easytags_dynamic_files = 1                      " let vim look for project tags file
-let g:easytags_async = 1                              " let generate tags in background
-let g:easytags_events = ['BufWritePost', 'BufReadPost'] " reindex on buffer write or read
-let g:easytags_resolve_links = 2                      " follow symlinks
-set completeopt=longest,menuone
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-"inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
-"  \ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-"inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
-"  \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-"set omnifunc=syntaxcomplete#Complete
+set tags=./tags;                                          " let Vim walk up directory hierarchy looking for tags file
+let g:easytags_dynamic_files = 0                          " let vim look for project tags file
+let g:easytags_async = 1                                  " let generate tags in background
+let g:easytags_events = ['BufWritePost']                  " reindex on buffer write or read
+let g:easytags_resolve_links = 2                          " follow symlinks
 
+set completeopt=longest,menuone
+
+if has("cscope")
+  set csto=0                              " search cscope before ctags
+"    if filereadable('cscope.out')
+"    cs add cscope.out                     " if database exists, load it
+"  endif
+  set cscopeverbose                       " make cscope be verbose
+  nmap <C-g> :w<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>   " find symbol references
+  nmap <C-e> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>   " find symbol definition
+
+  " TODO: it's possible to define more sophisticated find types... but do i
+  " really need it?
+else
+  echo "cscope is not present!"
+endif
 
 " Shortcuts
-map <C-Left> :bp<CR>          " pervious buffer
-map <C-Right> :bn<CR>         " next buffer
-map <C-Up> <C-i>              " go to next location
-map <C-Down> <C-o>            " go to previous location
-map <C-b> :make<CR>           " perform build
-map <C-v> :make test<CR>      " perform test
-map <C-f> *                   " search currently selected word
-map <C-a> :NERDTreeTabsToggle<CR>  " toggle project tree on Ctrl-M 
-nmap <C-m> g]                   " Go to definition
+map <C-Left>  :bp<CR>                     " pervious buffer
+map <C-Right> :bn<CR>                     " next buffer
+map <C-Up>    <C-i>                       " go to next location
+map <C-Down>  <C-o>                       " go to previous location
+map <C-b>     :make<CR>:cwindow<CR>       " perform build
+map <C-v>     :make test<CR>              " perform test
+map <C-f> *                               " search currently selected word
+map <C-a> :NERDTreeTabsToggle<CR>         " toggle project tree on Ctrl-M 
 
-
-"if v:version < 703
-"  inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?     " all that stuff is for make C-Space act as C-n
-"        \ "\<lt>C-n>" :
-"        \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
-"        \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
-"        \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
-"  imap <C-@> <C-Space>
-"endif
+" Functions
