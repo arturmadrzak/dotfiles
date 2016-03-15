@@ -57,6 +57,9 @@ let g:nerdtree_tabs_open_on_console_startup = 0       " don't open NERDTree on s
 autocmd FileType nerdtree noremap <buffer> <C-Left> <Nop>
 autocmd FileType nerdtree noremap <buffer> <C-Right> <Nop>
 
+"" nerdcommenter
+
+
 " Indexer
 "" vim-easytags
 set tags=./tags;                                          " let Vim walk up directory hierarchy looking for tags file
@@ -90,6 +93,13 @@ map <C-Down>  <C-o>                       " go to previous location
 map <C-b>     :make<CR>:cwindow<CR>       " perform build
 map <C-v>     :make test<CR>              " perform test
 map <C-f> *                               " search currently selected word
-map <C-a> :NERDTreeTabsToggle<CR>         " toggle project tree on Ctrl-M 
+map <C-a> :NERDTreeTabsToggle<CR>         " toggle project tree 
 
+"" Diffmode
+if &diff
+    nnoremap 1 [c
+    nnoremap 2 ]c
+    nnoremap q :qa<CR>
+    map <C-Right> :diffget<CR>
+endif
 " Functions
