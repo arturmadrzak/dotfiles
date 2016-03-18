@@ -86,14 +86,32 @@ else
 endif
 
 " Shortcuts
-map <C-Left>  :bp<CR>                     " pervious buffer
-map <C-Right> :bn<CR>                     " next buffer
-map <C-Up>    <C-i>                       " go to next location
-map <C-Down>  <C-o>                       " go to previous location
-map <C-b>     :make<CR>:cwindow<CR>       " perform build
-map <C-v>     :make test<CR>              " perform test
-map <C-f> *                               " search currently selected word
-map <C-a> :NERDTreeTabsToggle<CR>         " toggle project tree 
+" pervious buffer
+map <C-Left>  :bp<CR>                     
+
+" next buffer
+map <C-Right> :bn<CR>                     
+
+" go to next location
+map <C-Up>    <C-i>                       
+
+" go to previous location
+map <C-Down>  <C-o>                       
+
+" perform build
+map <C-b>     :make<CR>:cwindow<CR>       
+
+" perform test
+map <C-v>     :make test<CR>              
+
+" search currently selected word
+map <C-f> *                               
+
+" toggle project tree
+map <C-a> :NERDTreeTabsToggle<CR>         
+
+" close current buffer without closing tab/window
+nmap <F4> :Bclose<CR>                     
 
 "" Diffmode
 if &diff
@@ -102,4 +120,6 @@ if &diff
     nnoremap q :qa<CR>
     map <C-Right> :diffget<CR>
 endif
+
+
 " Functions
