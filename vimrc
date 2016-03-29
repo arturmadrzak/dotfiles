@@ -86,11 +86,6 @@ else
 endif
 
 " Shortcuts
-" pervious buffer
-map <C-Left>  :bp<CR>                     
-
-" next buffer
-map <C-Right> :bn<CR>                     
 
 " go to next location
 map <C-Up>    <C-i>                       
@@ -113,6 +108,20 @@ map <C-a> :NERDTreeTabsToggle<CR>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>                     
 
+" focus window left
+nmap <C-Left> <C-W><Left>
+
+" focus window right
+nmap <C-Right> <C-W><Right>                  
+
+if !&diff
+" pervious buffer
+  nmap 1 :bp<CR>
+" next buffer
+  nmap 2 :bn<CR>
+endif
+
+
 "" Diffmode
 if &diff
     nnoremap 1 [c
@@ -123,3 +132,4 @@ endif
 
 
 " Functions
+
