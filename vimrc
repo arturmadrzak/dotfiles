@@ -56,6 +56,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:nerdtree_tabs_open_on_console_startup = 0       " don't open NERDTree on startup
 autocmd FileType nerdtree noremap <buffer> <C-Left> <Nop>
 autocmd FileType nerdtree noremap <buffer> <C-Right> <Nop>
+autocmd FileType nerdtree noremap <buffer> 1 <Nop>
+autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
 "" nerdcommenter
 
