@@ -87,6 +87,12 @@ else
   echo "cscope is not present!"
 endif
 
+" change copletiom menu 'enter' behaviour
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+
+" omni completion
+inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<C-x><C-o><Down>"
+
 " Shortcuts
 
 " go to next location
