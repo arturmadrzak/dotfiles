@@ -53,9 +53,9 @@ let g:airline#extensions#tabline#enabled = 1
 "" nerdtree
 
 "" vim-nerdtree-tabs
-let g:nerdtree_tabs_open_on_console_startup = 0       " don't open NERDTree on startup
-autocmd FileType nerdtree noremap <buffer> <C-Left> <Nop>
-autocmd FileType nerdtree noremap <buffer> <C-Right> <Nop>
+let g:nerdtree_tabs_open_on_console_startup = 1          " don't open NERDTree on startup
+autocmd FileType nerdtree noremap <buffer> <C-Left> <C-W><Left>
+autocmd FileType nerdtree noremap <buffer> <C-Right> <C-W><Right>
 autocmd FileType nerdtree noremap <buffer> 1 <Nop>
 autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
@@ -73,13 +73,15 @@ let g:easytags_resolve_links = 2                          " follow symlinks
 set completeopt=longest,menuone
 
 if has("cscope")
+  set cscopeverbose                       " make cscope be verbose
   set csto=0                              " search cscope before ctags
-"    if filereadable('cscope.out')
+"  if filereadable('cscope.out')
 "    cs add cscope.out                     " if database exists, load it
 "  endif
-  set cscopeverbose                       " make cscope be verbose
+
   nmap <C-g> :w<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>   " find symbol references
   nmap <C-e> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>   " find symbol definition
+  nmap <F2> :!./indexer.sh<CR>:cs reset<CR>:echom 'Index updated'<CR>
 
   " TODO: it's possible to define more sophisticated find types... but do i
   " really need it?
@@ -87,11 +89,11 @@ else
   echo "cscope is not present!"
 endif
 
-" change copletiom menu 'enter' behaviour
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+" change completion menu 'enter' behaviour
+"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 
 " omni completion
-inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<C-x><C-o><Down>"
+"inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<C-x><C-o><Down>"
 
 " Shortcuts
 
@@ -113,14 +115,15 @@ map <C-f> *
 " toggle project tree
 map <C-a> :NERDTreeTabsToggle<CR>         
 
-" close current buffer without closing tab/window
-nmap <F4> :Bclose<CR>                     
-
 " focus window left
-nmap <C-Left> <C-W><Left>
+map <C-Left>  :w<CR><C-W><Left>
 
 " focus window right
-nmap <C-Right> <C-W><Right>                  
+map <C-Right> :w<CR><C-W><Right>                  
+
+" Function key mappings:
+" close current buffer without closing tab/window
+nmap <F4> :Bclose<CR>                     
 
 if !&diff
 " pervious buffer
@@ -140,4 +143,3 @@ endif
 
 
 " Functions
-
