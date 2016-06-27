@@ -28,6 +28,9 @@ set tabstop=4          " default spaces for a hard tab
 set softtabstop=4      " default spaces for the soft tab
 set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 
+" Set leadery key mapping
+let mapleader="`"
+
 " Mouse settings
 if has('mouse')
   set mouse=a          " if mouse is available make use of it
@@ -73,29 +76,36 @@ let g:easytags_resolve_links = 2                          " follow symlinks
 set completeopt=longest,menuone
 
 if has("cscope")
-  set cscopeverbose                       " make cscope be verbose
-  set csto=0                              " search cscope before ctags
-"  if filereadable('cscope.out')
-"    cs add cscope.out                     " if database exists, load it
-"  endif
+" look both cscope and ctags
+  set cscopetag
+" search cscope before ctags
+  set csto=0                              
+" if database exists, load it
+  set nocscopeverbose
+  if filereadable('cscope.out')
+    cs add cscope.out                     
+  endif
+" make cscope be verbose
+  set cscopeverbose
 
-  nmap <C-g> :w<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>   " find symbol references
-  nmap <C-e> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>   " find symbol definition
-  nmap <F2> :!./indexer.sh<CR>:cs reset<CR>:echom 'Index updated'<CR>
-
-  " TODO: it's possible to define more sophisticated find types... but do i
-  " really need it?
+" find symbol references
+  noremap <Leader><Down> :w<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+" find symbol definition
+  noremap <Leader><CR> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+" find functions calling this function
+  noremap <Leader><Up> :w<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
 else
   echo "cscope is not present!"
 endif
 
-" change completion menu 'enter' behaviour
-"inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-
-" omni completion
-"inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<C-x><C-o><Down>"
 
 " Shortcuts
+set timeout timeoutlen=1000
+" omni completion
+inoremap <C-n> <C-x><C-o>
+
+" invoke indexer script
+nmap <silent> <F2> :!./indexer.sh<CR>:cs reset<CR>:echom 'Index updated'<CR>
 
 " go to next location
 map <C-Up>    <C-i>                       
