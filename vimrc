@@ -66,13 +66,7 @@ autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
 
 " Indexer
-"" vim-easytags
-set tags=./tags;                                          " let Vim walk up directory hierarchy looking for tags file
-let g:easytags_dynamic_files = 0                          " let vim look for project tags file
-let g:easytags_async = 1                                  " let generate tags in background
-let g:easytags_events = ['BufWritePost']                  " reindex on buffer write or read
-let g:easytags_resolve_links = 2                          " follow symlinks
-
+set tags=./tags;
 set completeopt=longest,menuone
 
 if has("cscope")
