@@ -18,6 +18,9 @@ set splitright         " Vertical splits use right half of screen
 set timeoutlen=100     " Lower ^[ timeout
 set fillchars=fold:\ , " get rid of obnoxious '-' characters in folds
 set tildeop            " use ~ to toggle case as an operator, not a motion
+
+" enable project specific vimrc
+set exrc
 if exists('&breakindent')
   set breakindent      " Indent wrapped lines up to the same level
 endif
@@ -98,8 +101,6 @@ set timeout timeoutlen=1000
 " omni completion
 inoremap <C-n> <C-x><C-o>
 
-" invoke indexer script
-nmap <silent> <F2> :!./indexer.sh<CR>:cs reset<CR>:echom 'Index updated'<CR>
 
 " go to next location
 map <C-Up>    <C-i>                       
@@ -129,6 +130,7 @@ map <C-Right> :w<CR><C-W><Right>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>                     
 
+
 if !&diff
 " pervious buffer
   nmap 1 :bp<CR>
@@ -145,5 +147,8 @@ if &diff
     map <C-Right> :diffget<CR>
 endif
 
+
+" Enable security for project specific vimrc
+set secure
 
 " Functions
