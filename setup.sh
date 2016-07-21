@@ -15,3 +15,8 @@ fi
 rm -f ~/.vim
 ln -s `pwd`/vim ~/.vim
 
+# setup .screenrc
+if [ -f ~/.screenrc ]; then
+    mv ~/.screenrc ~/.screenrc.bkp
+fi
+ln -s `pwd`/screenrc ~/.screenrc
