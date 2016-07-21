@@ -45,8 +45,10 @@ filetype plugin on
 
 " Apperance/color scheme settings 
 "" (vim-colors-solarized)
-set term=xterm-256color
-let g:solarized_termcolors=256
+if match($TERM, "xterm")!=-1
+    set term=xterm-256color
+    let g:solarized_termcolors=256
+endif
 set background=light
 colorscheme solarized
 
