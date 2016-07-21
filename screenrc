@@ -1,7 +1,7 @@
 term screen-256color
 defscrollback 4096
 backtick 0 0 0 whoami
-hardstatus alwayslastline '%{= g}[ %0`@%H %{g}][ %{= w}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= w}%+Lw%?%= %{= g} ][ %{y}Load: %l %{g}]'
+hardstatus alwayslastline '%{= g}[ %0`@%H %{g}][ %{= k}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= k}%+Lw%?%= %{= g} ][ %{y}Load: %l %{g}]'
 startup_message off
 altscreen on
 vbell off
