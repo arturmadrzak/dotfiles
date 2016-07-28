@@ -72,6 +72,12 @@ autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 set tags=./tags;
 set completeopt=longest,menuone
 
+" easytags
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_file = './tags'
+let g:easytags_on_cursorhold = 0
+
 if has("cscope")
 " look both cscope and ctags
   set cscopetag
@@ -105,7 +111,7 @@ let mapleader = "`"
 set timeout timeoutlen=1000
 
 " omni completion
-inoremap <Leader>n <C-x><C-o>
+inoremap <C-n> <C-x><C-o>
 
 " go to next location
 nnoremap <Leader><Up> <C-i> 
