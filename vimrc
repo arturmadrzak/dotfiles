@@ -97,8 +97,8 @@ if has("cscope")
 " find symbol definition
   noremap <Leader>\ :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
 
-" find functions calling this function
-"  noremap <Leader><Up> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+" find text occurences
+  noremap <Leader>t :w<CR>:cs find t <C-R>=expand("<cword>")<CR><CR>
 
 else
   echo "cscope is not present!"
