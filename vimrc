@@ -62,8 +62,6 @@ let g:airline#extensions#tabline#enabled = 1
 
 "" vim-nerdtree-tabs
 let g:nerdtree_tabs_open_on_console_startup = 1          " don't open NERDTree on startup
-autocmd FileType nerdtree noremap <buffer> <C-Left> <C-W><Left>
-autocmd FileType nerdtree noremap <buffer> <C-Right> <C-W><Right>
 autocmd FileType nerdtree noremap <buffer> 1 <Nop>
 autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
@@ -88,49 +86,52 @@ if has("cscope")
   set cscopeverbose
 
 " find symbol references
-  noremap <Leader><Down> :w<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+  noremap <Leader><CR> :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+
 " find symbol definition
-  noremap <Leader><CR> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+  noremap <Leader>\ :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+
 " find functions calling this function
-  noremap <Leader><Up> :w<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
+"  noremap <Leader><Up> :w<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+
 else
   echo "cscope is not present!"
 endif
 
 
+let mapleader = "`"
+
 " Shortcuts
 set timeout timeoutlen=1000
-" omni completion
-inoremap <C-n> <C-x><C-o>
 
+" omni completion
+inoremap <Leader>n <C-x><C-o>
 
 " go to next location
-map <C-Up>    <C-i>                       
+nnoremap <Leader><Up> <C-i> 
 
 " go to previous location
-map <C-Down>  <C-o>                       
-
-" perform build
-map <C-b>     :make<CR>:cwindow<CR>       
-
-" perform test
-map <C-v>     :make test<CR>              
+nnoremap <Leader><Down> <C-o>
 
 " search currently selected word
-map <C-f> *                               
+noremap <Leader>f *
+noremap <Leader>] *
 
 " toggle project tree
-map <C-a> :NERDTreeTabsToggle<CR>         
+noremap <Leader>a :NERDTreeTabsToggle<CR>
 
 " focus window left
-map <C-Left>  :w<CR><C-W><Left>
+noremap <Leader><Left> <C-W><Left>
+imap <Leader><Left> <Esc><C-W><Left>
 
 " focus window right
-map <C-Right> :w<CR><C-W><Right>                  
+noremap <Leader><Right> <C-W><Right>
+imap <Leader><Right> <Esc><C-W><Right>
+
 
 " Function key mappings:
 " close current buffer without closing tab/window
-nmap <F4> :Bclose<CR>                     
+nmap <F4> :Bclose<CR>
 
 
 if !&diff
@@ -146,7 +147,6 @@ if &diff
     nnoremap 1 [c
     nnoremap 2 ]c
     nnoremap q :qa<CR>
-    map <C-Right> :diffget<CR>
 endif
 
 
