@@ -92,10 +92,10 @@ if has("cscope")
   set cscopeverbose
 
 " find symbol references
-  noremap <Leader><CR> :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+  noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
 
 " find symbol definition
-  noremap <Leader>\ :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+  noremap <Leader><CR> :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
 
 " find text occurences
   noremap <Leader>t :w<CR>:cs find t <C-R>=expand("<cword>")<CR><CR>
