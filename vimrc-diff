@@ -1,0 +1,7 @@
+
+
+
+nnoremap 1 [c
+nnoremap 2 ]c
+nnoremap q :qa<CR>
+

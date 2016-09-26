@@ -1,0 +1,36 @@
+" Indexer
+set tags=./tags;
+set completeopt=longest,menuone
+
+" easytags
+let g:easytags_async = 1
+let g:easytags_syntax_keyword = 'always'
+let g:easytags_file = './tags'
+let g:easytags_on_cursorhold = 0
+
+if has("cscope")
+" look both cscope and ctags
+  set cscopetag
+" search cscope before ctags
+  set csto=0
+" if database exists, load it
+  set nocscopeverbose
+  if filereadable('cscope.out')
+    cs add cscope.out
+  endif
+" make cscope be verbose
+  set cscopeverbose
+
+" find symbol references
+  noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+
+" find symbol definition
+  noremap <Leader><CR> :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+
+" find text occurences
+  noremap <Leader>t :w<CR>:cs find t <C-R>=expand("<cword>")<CR><CR>
+
+else
+  echo "cscope is not present!"
+endif
+

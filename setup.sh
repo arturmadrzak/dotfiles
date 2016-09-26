@@ -7,6 +7,8 @@ if [ -f ~/.vimrc ]; then
 fi
 rm -f ~/.vimrc
 ln -s `pwd`/vimrc ~/.vimrc
+ln -s `pwd`/vimrc-ide ~/.vimrc-ide
+ln -s `pwd`/vimrc-diff ~/.vimrc-diff
 
 # setup .vim
 if [ -d ~/.vim ]; then
