@@ -129,6 +129,8 @@ nmap <F4> :Bclose<CR>
 if &diff
     source ~/.vimrc-diff
 endif
+
+source ~/.vimrc-ide
 " Enable security for project specific vimrc
 set secure
 

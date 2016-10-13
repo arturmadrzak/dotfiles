@@ -9,8 +9,5 @@ vbell off
 attrcolor b ".I"
 defbce "on"
 
-screen -t vim 1
-screen -t bash 2
-
 bindkey [1;5A prev
 bindkey [1;5B next
