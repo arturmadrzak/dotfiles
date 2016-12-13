@@ -9,5 +9,5 @@ vbell off
 attrcolor b ".I"
 defbce "on"
 
-bindkey [1;5A prev
-bindkey [1;5B next
+bindkey [1;5A next
+bindkey [1;5B prev
