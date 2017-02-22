@@ -89,9 +89,6 @@ let g:nerdtree_tabs_open_on_console_startup = 1          " don't open NERDTree o
 autocmd FileType nerdtree noremap <buffer> 1 <Nop>
 autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
-
-let mapleader = "`"
-
 " Shortcuts
 " pervious buffer
 nmap 1 :bp<CR>

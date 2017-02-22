@@ -23,5 +23,14 @@ if [ -f ~/.screenrc ]; then
 fi
 ln -s `pwd`/screenrc ~/.screenrc
 
+# setup tmux
+if [ -f ~/.tmux.conf ]; then
+    mv ~/.tmux.conf ~/.tmux.conf.bkp
+fi
+ln -s `pwd`/tmux.conf ~/.tmux.conf
+
+
+
+
 # install powerfonts
 cd powerline-fonts && ./install.sh
