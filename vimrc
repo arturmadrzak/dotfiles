@@ -60,7 +60,8 @@ if has('mouse')
   set mouse=a          " if mouse is available make use of it
 endif
 
-syntax on              " enable syntax
+" enable syntax
+syntax enable
 filetype plugin indent on
 filetype plugin on
 
@@ -68,9 +69,11 @@ filetype plugin on
 "" (vim-colors-solarized)
 if match($TERM, "xterm")!=-1
     set term=xterm-256color
-    let g:solarized_termcolors=256
 endif
-set background=light
+
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set background=dark
 colorscheme solarized
 
 "" vim-airline
@@ -130,7 +133,7 @@ if &diff
     source ~/.vimrc-diff
 endif
 
-source ~/.vimrc-ide
+" source ~/.vimrc-ide
 " Enable security for project specific vimrc
 set secure
 
