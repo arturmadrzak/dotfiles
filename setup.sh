@@ -22,3 +22,6 @@ if [ -f ~/.screenrc ]; then
     mv ~/.screenrc ~/.screenrc.bkp
 fi
 ln -s `pwd`/screenrc ~/.screenrc
+
+# install powerfonts
+cd powerline-fonts && ./install.sh
