@@ -91,9 +91,13 @@ autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 
 " Shortcuts
 " pervious buffer
-nmap 1 :bp<CR>
+nmap <F1> :bp<CR>
 " next buffer
-nmap 2 :bn<CR>
+nmap <F2> :bn<CR>
+" search currently selected word
+noremap <F3> *
+" close current buffer without closing tab/window
+nmap <F4> :Bclose<CR>
 
 " omni completion
 inoremap <C-n> <C-x><C-o>
@@ -106,9 +110,6 @@ nnoremap <Leader><Up> <C-i>
 " go to previous location
 nnoremap <Leader><Down> <C-o>
 
-" search currently selected word
-noremap <Leader>f *
-noremap <Leader>] *
 
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>
@@ -121,10 +122,6 @@ imap <Leader><Left> <Esc><C-W><Left>
 noremap <Leader><Right> <C-W><Right>
 imap <Leader><Right> <Esc><C-W><Right>
 
-
-" Function key mappings:
-" close current buffer without closing tab/window
-nmap <F4> :Bclose<CR>
 
 if &diff
     source ~/.vimrc-diff
