@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
+function backup()
+{
+    target=$1
+    if [ -f "$target" ]; then
+        mv "$target" "$target".bkp
+    fi
+}
 
 # setup .vimrc
-if [ -f ~/.vimrc ]; then
-  mv ~/.vimrc ~/.vimrc.bkp
-fi
-rm -f ~/.vimrc
+backup ~/.vimrc
 ln -s `pwd`/vimrc ~/.vimrc
-ln -s `pwd`/vimrc-ide ~/.vimrc-ide
-ln -s `pwd`/vimrc-diff ~/.vimrc-diff
+ln -sf `pwd`/vimrc-ide ~/.vimrc-ide
+ln -sf `pwd`/vimrc-diff ~/.vimrc-diff
 
 # setup .vim
 if [ -d ~/.vim ]; then
@@ -18,19 +22,16 @@ rm -f ~/.vim
 ln -s `pwd`/vim ~/.vim
 
 # setup .screenrc
-if [ -f ~/.screenrc ]; then
-    mv ~/.screenrc ~/.screenrc.bkp
-fi
+backup ~/.screenrc
 ln -s `pwd`/screenrc ~/.screenrc
 
 # setup tmux
-if [ -f ~/.tmux.conf ]; then
-    mv ~/.tmux.conf ~/.tmux.conf.bkp
-fi
+backup ~/.tmux.conf
 ln -s `pwd`/tmux.conf ~/.tmux.conf
 
-
-
+# setup bash_aliases
+backup ~/.bash_aliases
+ln -s `pwd`/bash_aliases ~/.bash_aliases
 
 # install powerfonts
 cd powerline-fonts && ./install.sh
