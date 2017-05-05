@@ -6,7 +6,9 @@ set completeopt=longest,menuone
 let g:easytags_async = 1
 let g:easytags_syntax_keyword = 'always'
 let g:easytags_file = './tags'
+let g:easytags_opts = ['-L cscope.files']
 let g:easytags_on_cursorhold = 0
+let g:easytags_resolve_links = 1
 
 if has("cscope")
 " look both cscope and ctags
