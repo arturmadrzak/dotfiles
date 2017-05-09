@@ -94,8 +94,6 @@ autocmd FileType nerdtree noremap <buffer> 2 <Nop>
 nmap <F1> :bp<CR>
 " next buffer
 nmap <F2> :bn<CR>
-" search currently selected word
-noremap <F3> *
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>
 
@@ -105,22 +103,23 @@ inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 autocmd CompleteDone * pclose
 
 " go to next location
-nnoremap <Leader><Up> <C-i>
+"nnoremap <Leader><Up> <C-i>
 
 " go to previous location
-nnoremap <Leader><Down> <C-o>
-
+"nnoremap <Leader><Down> <C-o>
 
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>
 
-" focus window left
+" focus window 
 noremap <Leader><Left> <C-W><Left>
 imap <Leader><Left> <Esc><C-W><Left>
-
-" focus window right
 noremap <Leader><Right> <C-W><Right>
 imap <Leader><Right> <Esc><C-W><Right>
+noremap <Leader><Up> <C-W><Up>
+imap <Leader><Up> <Esc><C-W><Up>
+noremap <Leader><Down> <C-W><Down>
+imap <Leader><Down> <Esc><C-W><Down>
 
 
 if &diff
