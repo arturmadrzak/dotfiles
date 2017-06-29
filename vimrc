@@ -86,8 +86,9 @@ let g:airline#extensions#tabline#enabled = 1
 
 "" vim-nerdtree-tabs
 let g:nerdtree_tabs_open_on_console_startup = 1          " don't open NERDTree on startup
-autocmd FileType nerdtree noremap <buffer> 1 <Nop>
-autocmd FileType nerdtree noremap <buffer> 2 <Nop>
+autocmd FileType nerdtree noremap <buffer> <F1> <Nop>
+autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
+autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 
 " Shortcuts
 " pervious buffer
@@ -102,25 +103,14 @@ inoremap <C-n> <C-x><C-o>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 autocmd CompleteDone * pclose
 
-" go to next location
-"nnoremap <Leader><Up> <C-i>
-
-" go to previous location
-"nnoremap <Leader><Down> <C-o>
 
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>
 
-" focus window 
-noremap <Leader><Left> <C-W><Left>
-imap <Leader><Left> <Esc><C-W><Left>
-noremap <Leader><Right> <C-W><Right>
-imap <Leader><Right> <Esc><C-W><Right>
-noremap <Leader><Up> <C-W><Up>
-imap <Leader><Up> <Esc><C-W><Up>
-noremap <Leader><Down> <C-W><Down>
-imap <Leader><Down> <Esc><C-W><Down>
-
+noremap <C-Left> <C-W><Left>
+imap <C-Left> <Esc>:w<CR><C-W><Left>
+noremap <C-Right> <C-W><Right>
+imap <C-Right> <Esc>:w<CR><C-W><Right>
 
 if &diff
     source ~/.vimrc-diff
