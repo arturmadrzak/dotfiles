@@ -107,10 +107,15 @@ autocmd CompleteDone * pclose
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>
 
+" navigate windows left/right
 noremap <C-Left> <C-W><Left>
 imap <C-Left> <Esc>:w<CR><C-W><Left>
 noremap <C-Right> <C-W><Right>
 imap <C-Right> <Esc>:w<CR><C-W><Right>
+
+" file scrolling to the end/beginning
+noremap <C-PageUp> 1G
+noremap <C-PageDown> G
 
 if &diff
     source ~/.vimrc-diff

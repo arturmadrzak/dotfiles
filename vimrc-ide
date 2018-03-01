@@ -3,11 +3,11 @@ set tags=./tags;
 set completeopt=longest,menuone
 
 " easytags
-let g:easytags_async = 1
-let g:easytags_syntax_keyword = 'always'
-let g:easytags_file = './tags'
-let g:easytags_on_cursorhold = 0
-let g:easytags_resolve_links = 1
+"let g:easytags_async = 1
+"let g:easytags_syntax_keyword = 'always'
+"let g:easytags_file = './tags'
+"let g:easytags_on_cursorhold = 0
+"let g:easytags_resolve_links = 1
 
 if has("cscope")
 " look both cscope and ctags
@@ -28,8 +28,26 @@ endif
 
 " find symbol definition
 noremap <Leader><CR> <C-]>
-" jump back from definition
-noremap <Leader><Down> <C-T>
+" jump forward
+noremap <Leader><Right> <C-i>
+" jump backward
+noremap <Leader><Left> <C-o>
 " find symbol references
 noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+
+" cscope find bindings
+" - assignment
+noremap \a :wa<CR>:cs find a <C-R>=expand("<cword>")<CR><CR>
+" - where function is called
+noremap \d :wa<CR>:cs find d <C-R>=expand("<cword>")<CR><CR>
+" - file
+noremap \f :wa<CR>:cs find f <C-R>=expand("<cword>")<CR><CR>
+" - definition
+noremap \g :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+" - including current file
+noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
+" - symbol
+noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+" - text/regular expression
+noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR>
 

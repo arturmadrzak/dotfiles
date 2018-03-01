@@ -7,9 +7,15 @@ Leader - Ctrl key
 # vim - cheatsheet
 Leader - `
 
-## cscope
-<Leader><CR> - find symbol
-<Leader>\ - find symbol definition
+## Searching functions
+<Leader>fX, where X is:
+* a - find assignment
+* d - find where function is called
+* f - find a file
+* g - go to definition
+* i - find files including current file
+* s - find symbol
+* e - search text(egrep) in project files
 
 ## other
 
