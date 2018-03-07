@@ -2,25 +2,25 @@
 
 # vim
 Leader - `  
-<F1> - previous buffer  
-<F2> - next buffer  
-<F4> - close buffer  
+&lt;F1&gt; - previous buffer  
+&lt;F2&gt; - next buffer  
+&lt;F4&gt; - close buffer  
 
-<C-Left> - navigate left window  
-<C-Right> - navigate right window  
-<C-PageUp> - beginning file  
-<C-PageDown> - end file  
+&lt;C-Left&gt; - navigate left window  
+&lt;C-Right&gt; - navigate right window  
+&lt;C-PageUp&gt; - beginning file  
+&lt;C-PageDown&gt; - end file  
 
-<Leader><Left> - jump to next location  
-<Leader><Right> - jump to previous location  
+&lt;Leader&gt;&lt;Left&gt; - jump to next location  
+&lt;Leader&gt;&lt;Right&gt; - jump to previous location  
 
-<Leader>a - toggle NERD tree  
-<Leader>n - omni  
+&lt;Leader&gt;a - toggle NERD tree  
+&lt;Leader&gt;n - omni  
 
 # vim-ide
 
 ## Searching functions
-<Leader>fX, where X is:
+&lt;Leader&gt;fX, where X is:
 * a - find assignment
 * d - find where function is called
 * f - find a file
