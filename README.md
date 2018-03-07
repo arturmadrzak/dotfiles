@@ -1,11 +1,23 @@
-# screen - cheatsheet
+# tmux
 
-Leader - Ctrl key
-<C-Up> - next screen
-<C-Down> - prev screen
-
-# vim - cheatsheet
+# vim
 Leader - `
+<F1> - previous buffer
+<F2> - next buffer
+<F4> - close buffer
+
+<C-Left> - navigate left window
+<C-Right> - navigate right window
+<C-PageUp> - beginning file
+<C-PageDown> - end file
+
+<Leader><Left> - jump to next location
+<Leader><Right> - jump to previous location
+
+<Leader>a - toggle NERD tree
+<Leader>n - omni
+
+# vim-ide
 
 ## Searching functions
 <Leader>fX, where X is:
@@ -16,13 +28,3 @@ Leader - `
 * i - find files including current file
 * s - find symbol
 * e - search text(egrep) in project files
-
-## other
-
-<Leader>n - omni
-<Leader><Up> - next location
-<Leader><Down> - prev location
-<Leader>] - find selected word
-<Leader>a - toggle NERD tree
-<Leader><Left> - window left
-<Leader><Right> - window right
