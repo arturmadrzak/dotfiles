@@ -2,13 +2,6 @@
 set tags=./tags;
 set completeopt=longest,menuone
 
-" easytags
-"let g:easytags_async = 1
-"let g:easytags_syntax_keyword = 'always'
-"let g:easytags_file = './tags'
-"let g:easytags_on_cursorhold = 0
-"let g:easytags_resolve_links = 1
-
 if has("cscope")
 " look both cscope and ctags
   set cscopetag
@@ -28,10 +21,6 @@ endif
 
 " find symbol definition
 noremap <Leader><CR> <C-]>
-" jump forward
-noremap <Leader><Right> <C-i>
-" jump backward
-noremap <Leader><Left> <C-o>
 " find symbol references
 noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
 

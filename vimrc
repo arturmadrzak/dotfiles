@@ -113,6 +113,11 @@ imap <C-Left> <Esc>:w<CR><C-W><Left>
 noremap <C-Right> <C-W><Right>
 imap <C-Right> <Esc>:w<CR><C-W><Right>
 
+" jump forward
+noremap <Leader><Right> <C-i>
+" jump backward
+noremap <Leader><Left> <C-o>
+
 " file scrolling to the end/beginning
 noremap <C-PageUp> 1G
 noremap <C-PageDown> G
