@@ -1,21 +1,21 @@
 # tmux
 
 # vim
-Leader - `
-<F1> - previous buffer
-<F2> - next buffer
-<F4> - close buffer
+Leader - `  
+<F1> - previous buffer  
+<F2> - next buffer  
+<F4> - close buffer  
 
-<C-Left> - navigate left window
-<C-Right> - navigate right window
-<C-PageUp> - beginning file
-<C-PageDown> - end file
+<C-Left> - navigate left window  
+<C-Right> - navigate right window  
+<C-PageUp> - beginning file  
+<C-PageDown> - end file  
 
-<Leader><Left> - jump to next location
-<Leader><Right> - jump to previous location
+<Leader><Left> - jump to next location  
+<Leader><Right> - jump to previous location  
 
-<Leader>a - toggle NERD tree
-<Leader>n - omni
+<Leader>a - toggle NERD tree  
+<Leader>n - omni  
 
 # vim-ide
 
