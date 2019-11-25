@@ -18,12 +18,9 @@ ln -sf `pwd`/vimrc-diff ~/.vimrc-diff
 if [ -d ~/.vim ]; then
   mv ~/.vim ~/.vim.bkp
 fi
+
 rm -f ~/.vim
 ln -s `pwd`/vim ~/.vim
-
-# setup .screenrc
-backup ~/.screenrc
-ln -s `pwd`/screenrc ~/.screenrc
 
 # setup tmux
 backup ~/.tmux.conf

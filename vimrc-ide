@@ -1,18 +1,62 @@
 " Indexer
+
 set tags=./tags;
 set completeopt=longest,menuone
 
+function! RefreshCScope()
+    set nocscopeverbose
+    silent !cscope -bkqR
+    cs reset
+    set cscopeverbose
+endfunction
+
+function! RefreshCTags(file)
+    if filereadable(a:file)
+        silent execute "!ctags --append=yes --languages=c -o tags" a:file
+    else
+        silent execute "!ctags --language-force=c --recurse=yes -o tags"
+    endif
+endfunction
+
+function! RefreshIndexOnSave()
+    if has("cscope") && filereadable('cscope.out')
+        call RefreshCScope()
+    endif
+    if filereadable('tags')
+        call RefreshCTags(@%)
+    endif
+    redraw!
+endfunction
+
+function! RebuildIndex()
+    silent !rm -f cscope.* tags
+    call RefreshCScope()
+    call RefreshCTags('')
+    redraw!
+endfunction
+
+autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
+
+" configuire ctags
+if executable("ctags")
+    if !filereadable('tags')
+    endif
+else
+    echo "ctags is not present!"
+endif
+
+" configure cscope
 if has("cscope")
 " look both cscope and ctags
   set cscopetag
 " search cscope before ctags
   set csto=0
-" if database exists, load it
+" make cscope verbose
   set nocscopeverbose
+" if database exists, load it
   if filereadable('cscope.out')
     cs add cscope.out
   endif
-" make cscope be verbose
   set cscopeverbose
 else
   echo "cscope is not present!"
@@ -39,4 +83,6 @@ noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
 noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
 " - text/regular expression
 noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR>
+
+
 
