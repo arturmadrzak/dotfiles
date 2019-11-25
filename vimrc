@@ -97,6 +97,8 @@ nmap <F1> :bp<CR>
 nmap <F2> :bn<CR>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>
+nmap <F3> :call RebuildIndex()<CR>
+nmap <F5> :make<CR>
 
 " omni completion
 inoremap <C-n> <C-x><C-o>
@@ -124,6 +126,8 @@ noremap <C-PageDown> G
 
 if &diff
     source ~/.vimrc-diff
+else
+    source ~/.vimrc-ide
 endif
 
 " source ~/.vimrc-ide
