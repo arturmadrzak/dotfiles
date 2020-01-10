@@ -71,6 +71,8 @@ noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
 " cscope find bindings
 " - assignment
 noremap \a :wa<CR>:cs find a <C-R>=expand("<cword>")<CR><CR>
+" - where functions calling this function
+noremap \c :wa<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
 " - where function is called
 noremap \d :wa<CR>:cs find d <C-R>=expand("<cword>")<CR><CR>
 " - file
