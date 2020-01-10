@@ -5,7 +5,7 @@ set completeopt=longest,menuone
 
 function! RefreshCScope()
     set nocscopeverbose
-    silent !cscope -bkqR
+    silent !cscope -bqR
     cs reset
     set cscopeverbose
 endfunction
