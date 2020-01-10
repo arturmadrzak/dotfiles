@@ -23,3 +23,6 @@
 	path = powerline-fonts
 	url = https://github.com/powerline/fonts
 
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
