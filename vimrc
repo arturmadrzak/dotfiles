@@ -42,7 +42,7 @@ set splitbelow
 " show options above commandline
 set wildmenu
 " show whitespace characters
-set listchars=trail:·,tab:»·
+set listchars=eol:$,trail:·,tab:»·
 
 " enable project specific vimrc
 set exrc
