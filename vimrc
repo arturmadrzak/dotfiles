@@ -94,6 +94,8 @@ autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F3> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 
+" prevent cwindow be opened in normal buffers when switching
+autocmd BufWinEnter quickfix setlocal nobuflisted
 " Shortcuts
 " =================== Functional Keys ==================
 " pervious buffer
@@ -101,7 +103,7 @@ nmap <F1> :bp<CR>
 " next buffer
 nmap <F2> :bn<CR>
 " build/make project
-nmap <F3> :make<CR>
+nmap <F3> :wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>
 " refresh indes
