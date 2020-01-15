@@ -32,3 +32,4 @@ ln -s `pwd`/bash_aliases ~/.bash_aliases
 
 # install powerfonts
 cd powerline-fonts && ./install.sh
+cd fzf && ./install
