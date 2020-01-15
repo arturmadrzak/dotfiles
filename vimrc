@@ -41,7 +41,7 @@ set tildeop
 set splitbelow
 " show options above commandline
 set wildmenu
-" display trail spaces and tabs
+" show whitespace characters
 set listchars=trail:·,tab:»·
 
 " enable project specific vimrc
