@@ -35,11 +35,6 @@ function! RebuildIndex()
     redraw!
 endfunction
 
-autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
-
-" remove trailing spaces in source codes
-autocmd FileType c,cpp,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
-
 " configure wildmenu to ignore some not wanted files
 set wildignore+=*.o,*.d,*.elf
 
@@ -68,6 +63,9 @@ else
   echo "cscope is not present!"
 endif
 
+autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
+" remove trailing spaces in source codes
+autocmd FileType c,cpp,yml,yaml autocmd BufWritePre <buffer> %s/\s\+$//e
 
 
 
