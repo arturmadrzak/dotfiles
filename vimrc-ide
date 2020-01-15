@@ -37,6 +37,12 @@ endfunction
 
 autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
 
+" remove trailing spaces in source codes
+autocmd FileType c,cpp,java,php autocmd BufWritePre <buffer> %s/\s\+$//e
+
+" configure wildmenu to ignore some not wanted files
+set wildignore+=*.o,*.d,*.elf
+
 " configuire ctags
 if executable("ctags")
     if !filereadable('tags')
@@ -62,29 +68,6 @@ else
   echo "cscope is not present!"
 endif
 
-
-" find symbol definition
-noremap <Leader><CR> <C-]>
-" find symbol references
-noremap <Leader>\ :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
-
-" cscope find bindings
-" - assignment
-noremap \a :wa<CR>:cs find a <C-R>=expand("<cword>")<CR><CR>
-" - where functions calling this function
-noremap \c :wa<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
-" - where function is called
-noremap \d :wa<CR>:cs find d <C-R>=expand("<cword>")<CR><CR>
-" - file
-noremap \f :wa<CR>:cs find f <C-R>=expand("<cword>")<CR><CR>
-" - definition
-noremap \g :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
-" - including current file
-noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
-" - symbol
-noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
-" - text/regular expression
-noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR>
 
 
 

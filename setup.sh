@@ -12,7 +12,6 @@ function backup()
 backup ~/.vimrc
 ln -s `pwd`/vimrc ~/.vimrc
 ln -sf `pwd`/vimrc-ide ~/.vimrc-ide
-ln -sf `pwd`/vimrc-diff ~/.vimrc-diff
 ln -sf `pwd`/ctags ~/.ctags
 
 # setup .vim
