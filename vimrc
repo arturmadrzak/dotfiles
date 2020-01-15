@@ -39,6 +39,9 @@ set fillchars=fold:\ ,
 set tildeop
 " new at bottom 
 set splitbelow
+" show options above commandline
+set wildmenu
+
 
 " enable project specific vimrc
 set exrc
@@ -85,47 +88,75 @@ let g:airline#extensions#tabline#enabled = 1
 "" nerdtree
 
 "" vim-nerdtree-tabs
-let g:nerdtree_tabs_open_on_console_startup = 1          " don't open NERDTree on startup
+let g:nerdtree_tabs_open_on_console_startup = 0
 autocmd FileType nerdtree noremap <buffer> <F1> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
+autocmd FileType nerdtree noremap <buffer> <F3> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 
 " Shortcuts
+" =================== Functional Keys ==================
 " pervious buffer
 nmap <F1> :bp<CR>
 " next buffer
 nmap <F2> :bn<CR>
+" build/make project
+nmap <F3> :make<CR>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>
-nmap <F3> :call RebuildIndex()<CR>
-nmap <F5> :make<CR>
+" refresh indes
+nmap <F5> :call RebuildIndex()<CR>
+
+" =================== Leader based  ===================
+" toggle project tree
+noremap <Leader>a :NERDTreeTabsToggle<CR>
+" jump forward
+noremap <Leader><Right> <C-i>
+" jump backward
+noremap <Leader><Left> <C-o>
+" find symbol definition
+noremap <Leader><CR> <C-]>
+
+" =================== Control key based ================
+" navigate windows left/right
+noremap <C-Left> <C-W><Left>
+imap    <C-Left> <Esc>:w<CR><C-W><Left>
+noremap <C-Right> <C-W><Right>
+imap    <C-Right> <Esc>:w<CR><C-W><Right>
+
+" file scrolling to the end/beginning
+noremap <C-PageUp> 1G
+noremap <C-PageDown> G
 
 " omni completion
 inoremap <C-n> <C-x><C-o>
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 autocmd CompleteDone * pclose
 
+" =================== Slash prefix '\' based  ===========
+" cscope find bindings
+" - assignment
+noremap \a :wa<CR>:cs find a <C-R>=expand("<cword>")<CR><CR>
+" - where functions calling this function
+noremap \c :wa<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
+" - where function is called
+noremap \d :wa<CR>:cs find d <C-R>=expand("<cword>")<CR><CR>
+" - file
+noremap \f :wa<CR>:cs find f <C-R>=expand("<cword>")<CR><CR>
+" - definition
+noremap \g :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+" - including current file
+noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
+" - symbol
+noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+" - text/regular expression
+noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR>
 
-" toggle project tree
-noremap <Leader>a :NERDTreeTabsToggle<CR>
-
-" navigate windows left/right
-noremap <C-Left> <C-W><Left>
-imap <C-Left> <Esc>:w<CR><C-W><Left>
-noremap <C-Right> <C-W><Right>
-imap <C-Right> <Esc>:w<CR><C-W><Right>
-
-" jump forward
-noremap <Leader><Right> <C-i>
-" jump backward
-noremap <Leader><Left> <C-o>
-
-" file scrolling to the end/beginning
-noremap <C-PageUp> 1G
-noremap <C-PageDown> G
 
 if &diff
-    source ~/.vimrc-diff
+    nnoremap 1 [c
+    nnoremap 2 ]c
+    nnoremap q :qa<CR>
 else
     source ~/.vimrc-ide
 endif
