@@ -96,6 +96,9 @@ autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F3> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 
+" leave pane for git-gutter
+let g:ycm_show_diagnostics_ui = 0
+
 " prevent cwindow be opened in normal buffers when switching
 autocmd BufWinEnter quickfix setlocal nobuflisted
 " Shortcuts
@@ -105,7 +108,8 @@ nmap <F1> :bp<CR>
 " next buffer
 nmap <F2> :bn<CR>
 " build/make project
-nmap <F3> :wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>
+nmap <F3> :wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>:echo "Done."<CR>
+imap <F3> <Esc>:wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>:echo "Done."<CR>
 " close current buffer without closing tab/window
 nmap <F4> :Bclose<CR>
 " refresh indes
@@ -127,6 +131,10 @@ noremap <C-Left> <C-W><Left>
 imap    <C-Left> <Esc>:w<CR><C-W><Left>
 noremap <C-Right> <C-W><Right>
 imap    <C-Right> <Esc>:w<CR><C-W><Right>
+noremap <C-Up> <C-W><Up>
+imap    <C-Up> <Esc>:w<CR><C-W><Up>
+noremap <C-Down> <C-W><Down>
+imap    <C-Down> <Esc>:w<CR><C-W><Down>
 
 " file scrolling to the end/beginning
 noremap <C-PageUp> 1G
