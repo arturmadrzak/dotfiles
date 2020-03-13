@@ -91,6 +91,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 "" vim-nerdtree-tabs
 let g:nerdtree_tabs_open_on_console_startup = 0
+let NERDTreeIgnore = ['\.d$', '\.o$', '\.so$']
 autocmd FileType nerdtree noremap <buffer> <F1> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F3> <Nop>
@@ -98,6 +99,7 @@ autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 
 " leave pane for git-gutter
 let g:ycm_show_diagnostics_ui = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 " prevent cwindow be opened in normal buffers when switching
 autocmd BufWinEnter quickfix setlocal nobuflisted
@@ -117,7 +119,7 @@ nmap <F5> :call RebuildIndex()<CR>
 
 " =================== Leader based  ===================
 " toggle project tree
-noremap <Leader>a :NERDTreeTabsToggle<CR>
+noremap <Leader>a :NERDTreeTabsToggle<CR><C-w>=
 " jump forward
 noremap <Leader><Right> <C-i>
 " jump backward
@@ -162,13 +164,16 @@ noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
 " - symbol
 noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
 " - text/regular expression
-noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR>
+noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR><CR>
 
 
 if &diff
     nnoremap 1 [c
     nnoremap 2 ]c
     nnoremap q :qa<CR>
+    nnoremap <F5> :diffupdate<CR>
+    nnoremap <A-Left> :echo "hej"<CR>
+    autocmd BufWritePost * if &diff | diffupdate | endif "
 else
     source ~/.vimrc-ide
 endif
