@@ -35,6 +35,8 @@ set timeout
 set timeoutlen=1000
 " get rid of obnoxious '-' characters in folds
 set fillchars=fold:\ ,
+" disable source code folding
+set foldlevelstart=99
 " use ~ to toggle case as an operator, not a motion
 set tildeop
 " new at bottom 
