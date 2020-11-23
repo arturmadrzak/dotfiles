@@ -77,9 +77,9 @@ if match($TERM, "xterm")!=-1
     set term=xterm-256color
 endif
 
-set background=dark
+" set background=dark
 let g:solarized_termcolors=256
-let g:solarized_termtrans=1
+let g:solarized_termtrans=0
 let g:solarized_visibility="normal"
 colorscheme solarized
 
