@@ -102,6 +102,7 @@ autocmd FileType nerdtree noremap <buffer> <F4> <Nop>
 " leave pane for git-gutter
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
 
 " prevent cwindow be opened in normal buffers when switching
 autocmd BufWinEnter quickfix setlocal nobuflisted
