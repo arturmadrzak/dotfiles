@@ -1,0 +1,67 @@
+" Shortcuts
+" =================== Functional Keys ==================
+" pervious buffer
+nmap <F1> :bp<CR>
+" next buffer
+nmap <F2> :bn<CR>
+" build/make project
+nmap <F3> :wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>:echo "Done."<CR>
+imap <F3> <Esc>:wa<CR>:silent make\|redraw!\|cc<CR>:cw<CR>:echo "Done."<CR>
+" close current buffer without closing tab/window
+nmap <F4> :Bclose<CR>
+
+" =================== Control key based ================
+" navigate windows left/right
+noremap <C-Left> <C-W><Left>
+imap    <C-Left> <Esc>:w<CR><C-W><Left>
+noremap <C-Right> <C-W><Right>
+imap    <C-Right> <Esc>:w<CR><C-W><Right>
+noremap <C-Up> <C-W><Up>
+imap    <C-Up> <Esc>:w<CR><C-W><Up>
+noremap <C-Down> <C-W><Down>
+imap    <C-Down> <Esc>:w<CR><C-W><Down>
+
+" =================== Leader based  ===================
+" jump forward
+noremap <Leader><Right> <C-i>
+" jump backward
+noremap <Leader><Left> <C-o>
+" find symbol definition
+noremap <Leader><CR> <C-]>
+
+
+
+
+
+" toggle project tree
+noremap <Leader>a :NERDTreeTabsToggle<CR><C-w>=
+" refresh indes
+nmap <F5> :call RebuildIndex()<CR>
+" file scrolling to the end/beginning
+noremap <C-PageUp> 1G
+noremap <C-PageDown> G
+
+" omni completion
+inoremap <C-n> <C-x><C-o>
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+autocmd CompleteDone * pclose
+
+" =================== Slash prefix '\' based  ===========
+" cscope find bindings
+" - assignment
+noremap \a :wa<CR>:cs find a <C-R>=expand("<cword>")<CR><CR>
+" - where functions calling this function
+noremap \c :wa<CR>:cs find c <C-R>=expand("<cword>")<CR><CR>
+" - where function is called
+noremap \d :wa<CR>:cs find d <C-R>=expand("<cword>")<CR><CR>
+" - file
+noremap \f :wa<CR>:cs find f <C-R>=expand("<cword>")<CR><CR>
+" - definition
+noremap \g :wa<CR>:cs find g <C-R>=expand("<cword>")<CR><CR>
+" - including current file
+noremap \i :wa<CR>:cs find i <C-R>=expand("%:t")<CR><CR>
+" - symbol
+noremap \s :wa<CR>:cs find s <C-R>=expand("<cword>")<CR><CR>
+" - text/regular expression
+noremap \e :wa<CR>:cs find e <C-R>=expand("<cword>")<CR><CR>
+
