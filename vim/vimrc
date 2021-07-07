@@ -78,12 +78,11 @@ if &diff
     nnoremap 2 ]c
     nnoremap q :qa<CR>
     nnoremap <F5> :diffupdate<CR>
-    nnoremap <A-Left> :echo "hej"<CR>
     autocmd BufWritePost * if &diff | diffupdate | endif "
 endif
 
 " Include key mappings
-source ~/.vimrc-map
+runtime vimrc-map
 
 " Enable security for project specific vimrc
 set secure
