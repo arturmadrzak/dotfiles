@@ -38,3 +38,6 @@
 [submodule "vim/pack/general/start/vim-syntastic"]
 	path = vim/pack/general/start/vim-syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "vim/pack/general/start/youcompleteme"]
+	path = vim/pack/general/start/youcompleteme
+	url = https://github.com/valloric/youcompleteme
