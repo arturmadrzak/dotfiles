@@ -40,17 +40,22 @@ set splitbelow
 set wildmenu
 " show whitespace characters
 set listchars=eol:$,trail:·,tab:»·
+" configure wildmenu to ignore some not wanted files
+set wildignore+=*.o,*.d,*.elf
 " enable project specific vimrc
 set exrc
 if exists('&breakindent')
   set breakindent      " Indent wrapped lines up to the same level
 endif
-
 " Tabulator settings
 set expandtab          " Expand tabs into spaces
 set tabstop=4          " default spaces for a hard tab
 set softtabstop=4      " default spaces for the soft tab
 set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
+" ctags top level file
+set tags=./tags;
+" completer options
+set completeopt=longest,menuone
 
 " Set leadery key mapping
 let mapleader="`"
@@ -81,14 +86,7 @@ if &diff
     autocmd BufWritePost * if &diff | diffupdate | endif "
 endif
 
-" Include key mappings
-runtime vimrc-map
-" Include color theme settings
-runtime vimrc-theme
-" Configure syntastic plugin
-runtime vimrc-syntastic
-" Configure gitgutter plugin
-runtime vimrc-gitgutter
+runtime! vimrc-*
 
 " Enable security for project specific vimrc
 set secure
