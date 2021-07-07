@@ -5,7 +5,7 @@
 	path = vim/bundle/Menlo-for-Powerline
 	url = https://github.com/abertsch/Menlo-for-Powerline
 [submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
+	path = vim/pack/general/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/vim-colors-solarized"]
 	path = vim/bundle/vim-colors-solarized
@@ -17,7 +17,7 @@
 	path = vim/bundle/vim-misc
 	url = https://github.com/xolox/vim-misc.git
 [submodule "vim/bundle/vim-nerdtree-tabs"]
-	path = vim/bundle/vim-nerdtree-tabs
+	path = vim/pack/general/start/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
 [submodule "powerline-fonts"]
 	path = powerline-fonts
