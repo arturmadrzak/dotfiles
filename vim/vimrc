@@ -83,6 +83,12 @@ endif
 
 " Include key mappings
 runtime vimrc-map
+" Include color theme settings
+runtime vimrc-theme
+" Configure syntastic plugin
+runtime vimrc-syntastic
+" Configure gitgutter plugin
+runtime vimrc-gitgutter
 
 " Enable security for project specific vimrc
 set secure
