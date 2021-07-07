@@ -1,5 +1,5 @@
 [submodule "vim/bundle/vim-airline"]
-	path = vim/bundle/vim-airline
+	path = vim/pack/general/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
 [submodule "vim/bundle/Menlo-for-Powerline"]
 	path = vim/bundle/Menlo-for-Powerline
@@ -35,3 +35,6 @@
 [submodule "vim/bundle/youcompleteme"]
 	path = vim/bundle/youcompleteme
 	url = https://github.com/valloric/youcompleteme
+[submodule "vim/pack/general/start/vim-syntastic"]
+	path = vim/pack/general/start/vim-syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
