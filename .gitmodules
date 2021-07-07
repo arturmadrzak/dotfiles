@@ -8,7 +8,7 @@
 	path = vim/pack/general/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
+	path = vim/pack/general/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
@@ -24,7 +24,7 @@
 	url = https://github.com/powerline/fonts
 
 [submodule "vim/bundle/vim-gitgutter"]
-	path = vim/bundle/vim-gitgutter
+	path = vim/pack/general/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
 [submodule "fzf"]
 	path = fzf
