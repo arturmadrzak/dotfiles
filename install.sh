@@ -3,6 +3,7 @@
 set -eu
 
 APT_PACKAGES=" \
+    editorconfig \
 	shellcheck \
 	tmux \
 	vim \
