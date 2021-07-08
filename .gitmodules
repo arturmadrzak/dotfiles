@@ -41,3 +41,6 @@
 [submodule "vim/pack/general/start/youcompleteme"]
 	path = vim/pack/general/start/youcompleteme
 	url = https://github.com/valloric/youcompleteme
+[submodule "vim/pack/general/start/vim-editorconfig"]
+	path = vim/pack/general/start/vim-editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
