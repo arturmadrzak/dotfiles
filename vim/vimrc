@@ -70,8 +70,9 @@ syntax enable
 filetype plugin indent on
 filetype plugin on
 
-" prevent cwindow be opened in normal buffers when switching
+" prevent cwindow and location be opened in normal buffers when switching
 autocmd BufWinEnter quickfix setlocal nobuflisted
+autocmd BufWinEnter location setlocal nobuflisted
 
 " Apperance/color scheme settings
 if match($TERM, "xterm")!=-1
