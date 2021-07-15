@@ -4,6 +4,7 @@ set -eu
 
 APT_PACKAGES=" \
     editorconfig \
+    python3-dev \
     shellcheck \
     tmux \
     vim \
@@ -47,6 +48,11 @@ install_fuzzy_completer()
     ./fzf/install --all > /dev/null
 }
 
+install_ycm()
+{
+    ./vim/pack/general/start/youcompleteme/install.py --clangd-completer
+}
+
 install_editorconfig()
 {
     _target="${HOME}/.editorconfig"
@@ -63,6 +69,7 @@ main()
     install_vim
     install_tmux
     install_fuzzy_completer
+    install_ycm
     install_editorconfig
 }
 
