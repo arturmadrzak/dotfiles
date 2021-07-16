@@ -2,6 +2,8 @@
 
 set -eu
 
+DOTFILES_PATH="${0%/*}"
+
 APT_PACKAGES=" \
     editorconfig \
     python3-dev \
@@ -30,7 +32,7 @@ install_vim()
         echo "Warning: Backing up '${_vimdir}' to '${_vimdir}.bak'"
         mv -T "${_vimdir}" "${_vimdir}.bak"
     fi
-    ln -sT "${PWD}/vim" "${_vimdir}"
+    ln -sT "${DOTFILES_PATH}/vim" "${_vimdir}"
 }
 
 install_tmux()
@@ -40,17 +42,18 @@ install_tmux()
         echo "Warning: Backing up '${_tmuxconf}' to '${_tmuxconf}.bak'"
         mv "${_tmuxconf}" "${_tmuxconf}.bak"
     fi
-    ln -sT "${PWD}/tmux.conf" "${_tmuxconf}"
+    ln -sT "${DOTFILES_PATH}/tmux.conf" "${_tmuxconf}"
 }
 
 install_fuzzy_completer()
 {
-    ./fzf/install --all > /dev/null
+    "${DOTFILES_PATH}/fzf/install" --all > /dev/null
 }
 
 install_ycm()
 {
-    ./vim/pack/general/start/youcompleteme/install.py --clangd-completer
+    "${DOTFILES_PATH}/vim/pack/general/start/youcompleteme/install.py"\
+        --clangd-completer
 }
 
 install_editorconfig()
@@ -60,7 +63,7 @@ install_editorconfig()
         echo "Warning: Backing up '${_target}' to '${_target}.bak'"
         mv "${_target}" "${_target}.bak"
     fi
-    ln -sT "${PWD}/editorconfig" "${_target}"
+    ln -sT "${DOTFILES_PATH}/editorconfig" "${_target}"
 }
 
 main()
