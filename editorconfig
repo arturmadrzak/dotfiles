@@ -14,6 +14,9 @@ spaces_around_operators = true
 tab_width = 4
 trim_trailing_whitespace = true
 
+[Makefile]:
+indent_style=tab
+
 [*.sh]
 max_line_length = 80
 shell_varint = posix
