@@ -24,3 +24,6 @@ shell_varint = posix
 [*.{yaml,yml}]
 max_line_length = 80
 indent_size = 2
+
+[*.{dts,dtsi}]
+indent_style = tab
