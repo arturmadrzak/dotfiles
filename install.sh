@@ -9,8 +9,7 @@ APT_PACKAGES=" \
     python3-dev \
     shellcheck \
     tmux \
-    vim \
-    vim-gtk3 \
+    vim
     "
 
 install_apt()
@@ -72,7 +71,6 @@ main()
     install_vim
     install_tmux
     install_fuzzy_completer
-    install_ycm
     install_editorconfig
 }
 
