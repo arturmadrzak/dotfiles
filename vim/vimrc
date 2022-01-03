@@ -93,7 +93,7 @@ runtime! vimrc-filetypes
 runtime! vimrc-gitgutter
 runtime! vimrc-map
 runtime! vimrc-nerdtree
-runtime! vimrc-synastic
+runtime! vimrc-syntastic
 runtime! vimrc-theme
 
 " Enable security for project specific vimrc
