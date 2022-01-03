@@ -34,7 +34,7 @@ set fillchars=fold:\ ,
 set foldlevelstart=99
 " use ~ to toggle case as an operator, not a motion
 set tildeop
-" new at bottom 
+" new at bottom
 set splitbelow
 " show options above commandline
 set wildmenu
@@ -87,7 +87,14 @@ if &diff
     autocmd BufWritePost * if &diff | diffupdate | endif "
 endif
 
-runtime! vimrc-*
+" load generic configurations
+runtime! vimrc-airline
+runtime! vimrc-filetypes
+runtime! vimrc-gitgutter
+runtime! vimrc-map
+runtime! vimrc-nerdtree
+runtime! vimrc-synastic
+runtime! vimrc-theme
 
 " Enable security for project specific vimrc
 set secure

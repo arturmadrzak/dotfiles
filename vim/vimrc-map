@@ -30,11 +30,8 @@ noremap <Leader><Left> <C-o>
 noremap <Leader><CR> <C-]>
 
 
-
-
-
 " toggle project tree
-noremap <Leader>a :NERDTreeTabsToggle<CR><C-w>
+noremap <Leader>a :NERDTreeTabsToggle<CR>
 " refresh indes
 nmap <F5> :call RebuildIndex()<CR>
 " file scrolling to the end/beginning
