@@ -1,6 +1,7 @@
 "" vim-nerdtree-tabs
 let g:nerdtree_tabs_open_on_console_startup = 0
-let NERDTreeIgnore = ['\.d$', '\.o$', '\.so$']
+let g:NERDTreeWinSize=50
+let g:NERDTreeIgnore = ['\.d$', '\.o$', '\.so$']
 autocmd FileType nerdtree noremap <buffer> <F1> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F2> <Nop>
 autocmd FileType nerdtree noremap <buffer> <F3> <Nop>
