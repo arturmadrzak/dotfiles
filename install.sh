@@ -4,12 +4,14 @@ set -eu
 
 DOTFILES_PATH="${0%/*}"
 
+# vim-gtk3 allow X11 clipboard integration
 APT_PACKAGES=" \
     editorconfig \
     python3-dev \
     shellcheck \
     tmux \
-    vim
+    vim \
+    vim-gtk3
     "
 
 install_apt()
