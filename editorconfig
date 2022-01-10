@@ -25,5 +25,8 @@ shell_varint = posix
 max_line_length = 80
 indent_size = 2
 
+[*.py]
+indent_size = 2
+
 [*.{dts,dtsi}]
 indent_style = tab
