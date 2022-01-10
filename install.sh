@@ -72,6 +72,7 @@ main()
     install_tmux
     install_fuzzy_completer
     install_editorconfig
+    install_ycm
 }
 
 main "${@}"

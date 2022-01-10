@@ -95,6 +95,7 @@ runtime! vimrc-map
 runtime! vimrc-nerdtree
 runtime! vimrc-syntastic
 runtime! vimrc-theme
+runtime! vimrc-ycm
 
 " Enable security for project specific vimrc
 set secure
