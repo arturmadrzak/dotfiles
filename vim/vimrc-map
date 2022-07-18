@@ -28,7 +28,8 @@ noremap <Leader><Right> <C-i>
 noremap <Leader><Left> <C-o>
 " find symbol definition
 noremap <Leader><CR> <C-]>
-
+" vimgrep through files
+noremap <Leader>. :execute "vimgrep /".expand("<cword>")."/ **"<Bar>cw<CR>
 
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>

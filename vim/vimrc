@@ -79,23 +79,20 @@ if match($TERM, "xterm")!=-1
     set term=xterm-256color
 endif
 
-if &diff
-    nnoremap 1 [c
-    nnoremap 2 ]c
-    nnoremap q :qa<CR>
-    nnoremap <F5> :diffupdate<CR>
-    autocmd BufWritePost * if &diff | diffupdate | endif "
-endif
-
 " load generic configurations
 runtime! vimrc-airline
 runtime! vimrc-filetypes
 runtime! vimrc-gitgutter
 runtime! vimrc-map
+runtime! vimrc-ide
 runtime! vimrc-nerdtree
 runtime! vimrc-syntastic
 runtime! vimrc-theme
 runtime! vimrc-ycm
+
+if &diff
+    runtime! vimrc-diff
+endif
 
 " Enable security for project specific vimrc
 set secure
