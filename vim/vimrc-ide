@@ -38,9 +38,11 @@ endfunction
 " configure wildmenu to ignore some not wanted files
 set wildignore+=*.o,*.d,*.elf
 
+
 " configuire ctags
 if executable("ctags")
-    if !filereadable('tags')
+    if isdirectory(".git") && !filereadable("tags")
+        confirm("no tags file. consider regenerate: ctags -R --fields=+l .")
     endif
 else
     echo "ctags is not present!"
@@ -72,5 +74,3 @@ autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
 
 " remove trailing spaces in source codes
 autocmd FileType c,cpp,yml,yaml,lua autocmd BufWritePre <buffer> %s/\s\+$//e
-
-
