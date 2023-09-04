@@ -80,6 +80,7 @@ if match($TERM, "xterm")!=-1
 endif
 
 " load generic configurations
+runtime! vimrc-comment
 runtime! vimrc-airline
 runtime! vimrc-filetypes
 runtime! vimrc-gitgutter
