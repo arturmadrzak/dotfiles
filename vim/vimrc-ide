@@ -42,7 +42,7 @@ set wildignore+=*.o,*.d,*.elf
 " configuire ctags
 if executable("ctags")
     if isdirectory(".git") && !filereadable("tags")
-        confirm("no tags file. consider regenerate: ctags -R --fields=+l .")
+        echo "no tags file. consider regenerate: ctags -R --fields=+l ."
     endif
 else
     echo "ctags is not present!"
@@ -65,12 +65,8 @@ else
   echo "cscope is not present!"
 endif
 
-" add yaml stuffs
-au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-
 " refresh cscope and ctags on C source save
 autocmd BufWritePost *.[ch] call RefreshIndexOnSave()
 
 " remove trailing spaces in source codes
-autocmd FileType c,cpp,yml,yaml,lua autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,yml,yaml,lua,python autocmd BufWritePre <buffer> %s/\s\+$//e
