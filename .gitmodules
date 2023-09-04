@@ -7,9 +7,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/pack/general/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/pack/general/start/vim-colors-solarized
-	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/vim-easytags"]
 	path = vim/bundle/vim-easytags
 	url = https://github.com/xolox/vim-easytags.git
