@@ -10,8 +10,15 @@ APT_PACKAGES=" \
     python3-dev \
     shellcheck \
     tmux \
-    vim \
-    vim-gtk3
+    vim-airline \
+    vim-common \
+    vim-editorconfig \
+    vim-gitgutter \
+    vim-gtk3 \
+    vim-nox \
+    vim-solarized \
+    vim-syntastic \
+    vim-youcompleteme
     "
 
 install_apt()
@@ -51,12 +58,6 @@ install_fuzzy_completer()
     "${DOTFILES_PATH}/fzf/install" --all > /dev/null
 }
 
-install_ycm()
-{
-    "${DOTFILES_PATH}/vim/pack/general/start/youcompleteme/install.py"\
-        --clangd-completer
-}
-
 install_editorconfig()
 {
     _target="${HOME}/.editorconfig"
@@ -74,7 +75,6 @@ main()
     install_tmux
     install_fuzzy_completer
     install_editorconfig
-    install_ycm
 }
 
 main "${@}"
