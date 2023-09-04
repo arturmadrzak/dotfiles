@@ -14,7 +14,7 @@ spaces_around_operators = true
 tab_width = 4
 trim_trailing_whitespace = true
 
-[Makefile]:
+[{Makefile,rules}]:
 indent_style=tab
 
 [*.sh]
