@@ -40,11 +40,7 @@ set wildignore+=*.o,*.d,*.elf
 
 
 " configuire ctags
-if executable("ctags")
-    if isdirectory(".git") && !filereadable("tags")
-        echo "no tags file. consider regenerate: ctags -R --fields=+l ."
-    endif
-else
+if !executable("ctags")
     echo "ctags is not present!"
 endif
 
