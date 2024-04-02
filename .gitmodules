@@ -16,10 +16,6 @@
 [submodule "vim/bundle/vim-nerdtree-tabs"]
 	path = vim/pack/general/start/vim-nerdtree-tabs
 	url = https://github.com/jistr/vim-nerdtree-tabs.git
-[submodule "powerline-fonts"]
-	path = powerline-fonts
-	url = https://github.com/powerline/fonts
-
 [submodule "vim/bundle/vim-gitgutter"]
 	path = vim/pack/general/start/vim-gitgutter
 	url = https://github.com/airblade/vim-gitgutter
