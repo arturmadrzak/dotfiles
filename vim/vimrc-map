@@ -21,8 +21,6 @@ imap    <C-Up> <Esc>:w<CR><C-W><Up>
 noremap <C-Down> <C-W><Down>
 imap    <C-Down> <Esc>:w<CR><C-W><Down>
 "_ mean /
-vnoremap q :call ToggleComment()<CR>
-nnoremap q :call ToggleComment()<CR>
 
 " =================== Leader based  ===================
 " jump forward
