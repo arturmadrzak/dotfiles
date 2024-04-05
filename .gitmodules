@@ -40,3 +40,7 @@
 [submodule "vim/pack/general/opt/jedi-vim"]
 	path = vim/pack/general/opt/jedi-vim
 	url = git@github.com:davidhalter/jedi-vim.git
+[submodule "vim/pack/general/start/vim-nerdcommenter"]
+	path = vim/pack/general/start/vim-nerdcommenter
+	url = https://github.com/preservim/nerdcommenter.git
+	branch = master
