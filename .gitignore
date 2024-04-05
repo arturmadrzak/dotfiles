@@ -1,2 +1,8 @@
 vim/.netrwhist
+vim/doc
+vim/autoload
+vim/plugin
 
+vim/after
+vim/ftplugin/
+vim/pythonx
