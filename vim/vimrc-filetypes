@@ -1,4 +1,4 @@
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
-au! BufNewFile,BufReadPost *.mk set filetype=makefile
+au! BufNewFile,BufReadPost *.mk set filetype=make
 au! FileType qf set nobuflisted
