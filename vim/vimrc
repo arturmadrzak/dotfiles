@@ -47,18 +47,15 @@ set exrc
 if exists('&breakindent')
   set breakindent      " Indent wrapped lines up to the same level
 endif
+
 " Tabulator settings
 set expandtab          " Expand tabs into spaces
 set tabstop=4          " default spaces for a hard tab
 set softtabstop=4      " default spaces for the soft tab
 set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
-" ctags top level file
-set tags=./tags;
+
 " completer options
 set completeopt=longest,menuone
-
-" Set leadery key mapping
-let mapleader="`"
 
 " Mouse settings
 if has('mouse')
@@ -84,15 +81,16 @@ runtime! vimrc-airline
 runtime! vimrc-filetypes
 runtime! vimrc-gitgutter
 runtime! vimrc-map
-runtime! vimrc-ide
 runtime! vimrc-nerdcommenter
 runtime! vimrc-nerdtree
 runtime! vimrc-syntastic
 runtime! vimrc-theme
-runtime! vimrc-ycm
 
 if &diff
     runtime! vimrc-diff
+else
+    runtime! vimrc-ide
+    runtime! vimrc-ycm
 endif
 
 " Enable security for project specific vimrc

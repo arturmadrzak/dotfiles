@@ -1,4 +1,8 @@
 " Shortcuts
+
+" Set leadery key mapping
+let mapleader="`"
+
 " =================== Functional Keys ==================
 " pervious buffer
 nmap <F1> :bp<CR>
