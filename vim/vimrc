@@ -55,7 +55,7 @@ set softtabstop=4      " default spaces for the soft tab
 set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 
 " completer options
-set completeopt=longest,menuone
+"set completeopt=longest,menuone
 
 " Mouse settings
 if has('mouse')
