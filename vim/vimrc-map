@@ -30,7 +30,7 @@ noremap <Leader><Right> <C-i>
 " jump backward
 noremap <Leader><Left> <C-o>
 " find symbol definition
-noremap <Leader><CR> <C-]>
+noremap <Leader><CR> :YcmCompleter GoToReferences<CR>
 " vimgrep through files
 noremap <Leader>. :execute "vimgrep /".expand("<cword>")."/ **"<Bar>cw<CR>
 
