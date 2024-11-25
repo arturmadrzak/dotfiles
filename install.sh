@@ -6,19 +6,21 @@ DOTFILES_PATH="${0%/*}"
 
 # vim-gtk3 allow X11 clipboard integration
 APT_PACKAGES=" \
+    autoimport \
     editorconfig \
     python3-dev \
     shellcheck \
     tmux \
     vim-airline \
+    vim-ale \
     vim-common \
     vim-editorconfig \
     vim-gitgutter \
     vim-gtk3 \
     vim-nox \
     vim-solarized \
-    vim-syntastic \
-    vim-youcompleteme
+    vim-youcompleteme \
+    yamllint
     "
 
 install_apt()
