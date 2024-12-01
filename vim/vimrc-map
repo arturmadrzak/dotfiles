@@ -5,11 +5,12 @@ let mapleader="`"
 
 " =================== Functional Keys ==================
 " pervious buffer
-nmap <F1> :bp<CR>
+nnoremap <expr> <F1> (&filetype!=#'qf' ? ":bprevious<CR>" : "")
 " next buffer
-nmap <F2> :bn<CR>
+nnoremap <expr> <F2> (&filetype!=#'qf' ? ":bnext<CR>" : "")
 " close current buffer without closing tab/window
-nmap <F4> :Bclose<CR>
+nmap <expr> <F4> (&filetype!=#'qf' ? ":Bclose<CR>" : "")
+
 
 " =================== Control key based ================
 " navigate windows left/right
