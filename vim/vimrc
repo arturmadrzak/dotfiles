@@ -1,5 +1,7 @@
 " Turn off compatibility mode
 set nocp
+" set encoding (required by ycm)
+set encoding=utf-8
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 " allow unwritten buffers
@@ -24,7 +26,6 @@ set linebreak
 set scrolloff=3
 " Vertical splits use right half of screen
 set splitright
-"
 set timeout
 " Lower ^[ timeout
 set timeoutlen=1000
@@ -61,6 +62,9 @@ set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 if has('mouse')
   set mouse=a          " if mouse is available make use of it
 endif
+
+" look for plugins in home dir
+set runtimepath+=~/.local/share/vim/addons/*/
 
 " enable syntax
 syntax enable
