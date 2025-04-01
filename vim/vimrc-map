@@ -1,7 +1,5 @@
 " Shortcuts
 
-" Set leadery key mapping
-let mapleader="`"
 
 " =================== Functional Keys ==================
 " pervious buffer
@@ -23,15 +21,15 @@ imap    <C-Up> <Esc>:w<CR><C-W><Up>
 noremap <C-Down> <C-W><Down>
 imap    <C-Down> <Esc>:w<CR><C-W><Down>
 
-"_ mean /
-
 " =================== Leader based  ===================
+" Set leadery key mapping
+let mapleader="`"
 " jump forward
 noremap <Leader><Right> <C-i>
 " jump backward
 noremap <Leader><Left> <C-o>
-" find symbol definition
-noremap <Leader><CR> :YcmCompleter GoToReferences<CR>
+noremap <Leader><CR> :YcmCompleter GoToDefinition<CR>
+noremap <Leader>/ :YcmCompleter GoToReferences<CR>
 " vimgrep through files
 noremap <Leader>. :execute "vimgrep /".expand("<cword>")."/ **"<Bar>cw<CR>
 
