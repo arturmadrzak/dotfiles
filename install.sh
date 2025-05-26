@@ -7,9 +7,13 @@ VIM_ADDONS_EXTRA=${HOME}/.local/share/vim/addons
 # vim-gtk3 allow X11 clipboard integration
 APT_PACKAGES=" \
     autoimport \
+    black \
     editorconfig \
+    flake8 \
+    isort \
     python3-dev \
     shellcheck \
+    shfmt \
     tmux \
     vim-airline \
     vim-ale \

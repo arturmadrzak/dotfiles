@@ -18,11 +18,11 @@ trim_trailing_whitespace = true
 indent_style=tab
 
 [*.sh]
-max_line_length = 80
+max_line_length = 100
 shell_varint = posix
 
 [*.{yaml,yml}]
-max_line_length = 80
+max_line_length = 100
 indent_size = 2
 
 [*.py]

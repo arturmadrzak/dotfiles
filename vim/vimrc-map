@@ -8,6 +8,8 @@ nnoremap <expr> <F1> (&filetype!=#'qf' ? ":bprevious<CR>" : "")
 nnoremap <expr> <F2> (&filetype!=#'qf' ? ":bnext<CR>" : "")
 " close current buffer without closing tab/window
 nmap <expr> <F4> (&filetype!=#'qf' ? ":Bclose<CR>" : "")
+" run fixer on current buffer
+nnoremap <expr> <F3> (&filetype!=#'qf' ? ":ALEFix<CR>" : "")
 
 
 " =================== Control key based ================
@@ -30,6 +32,7 @@ noremap <Leader><Right> <C-i>
 noremap <Leader><Left> <C-o>
 noremap <Leader><CR> :YcmCompleter GoToDefinition<CR>
 noremap <Leader>/ :YcmCompleter GoToReferences<CR>
+noremap <Leader>i :YcmCompleter GoToInclude<CR>
 " vimgrep through files
 noremap <Leader>. :execute "vimgrep /".expand("<cword>")."/ **"<Bar>cw<CR>
 
