@@ -23,6 +23,9 @@ imap    <C-Up> <Esc>:w<CR><C-W><Up>
 noremap <C-Down> <C-W><Down>
 imap    <C-Down> <Esc>:w<CR><C-W><Down>
 
+" =================== ESC based ======================
+noremap <Esc>q :wa<CR>:q<CR>
+
 " =================== Leader based  ===================
 " Set leadery key mapping
 let mapleader="`"
