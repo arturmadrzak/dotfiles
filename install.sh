@@ -3,6 +3,7 @@
 set -eu
 
 VIM_ADDONS_EXTRA=${HOME}/.local/share/vim/addons
+TMUX_PLUGINS=${HOME}/.tmux/plugins
 
 # vim-gtk3 allow X11 clipboard integration
 APT_PACKAGES=" \
@@ -98,6 +99,9 @@ install_vim()
 
 install_tmux()
 {
+    echo "[INSTALL] tmux plugins"
+    git_clone "${TMUX_PLUGINS}" https://github.com/tmux-plugins/tpm.git
+    echo "[INSTALL] tmux.conf"
     install -m 644 -T tmux.conf "${HOME}/.tmux.conf"
 }
 
@@ -115,10 +119,10 @@ install_editorconfig()
 main()
 {
     install_apt
-    install_vim
     install_tmux
-    install_fuzzy_completer
     install_editorconfig
+    install_vim
+    install_fuzzy_completer
 }
 
 main "${@}"
