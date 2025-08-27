@@ -100,6 +100,7 @@ install_vim()
 install_tmux()
 {
     echo "[INSTALL] tmux plugins"
+    mkdir -p "${TMUX_PLUGINS}"
     git_clone "${TMUX_PLUGINS}" https://github.com/tmux-plugins/tpm.git
     echo "[INSTALL] tmux.conf"
     install -m 644 -T tmux.conf "${HOME}/.tmux.conf"
