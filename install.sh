@@ -19,7 +19,6 @@ APT_PACKAGES=" \
     vim-airline \
     vim-ale \
     vim-common \
-    vim-editorconfig \
     vim-gitgutter \
     vim-gtk3 \
     vim-nox \
@@ -93,8 +92,6 @@ install_vim()
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/jistr/vim-nerdtree-tabs.git
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/rbgrouleff/bclose.vim.git
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/github/copilot.vim.git
-
-    vim_enable editorconfig
 }
 
 install_tmux()
