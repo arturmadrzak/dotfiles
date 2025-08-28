@@ -65,6 +65,7 @@ endif
 
 " look for plugins in home dir
 set runtimepath+=~/.local/share/vim/addons/*/
+set runtimepath+=~/.local/share/fzf
 
 " enable syntax
 syntax enable

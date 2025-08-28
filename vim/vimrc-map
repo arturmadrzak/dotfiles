@@ -22,6 +22,7 @@ noremap <C-Up> <C-W><Up>
 imap    <C-Up> <Esc>:w<CR><C-W><Up>
 noremap <C-Down> <C-W><Down>
 imap    <C-Down> <Esc>:w<CR><C-W><Down>
+noremap <C-e> <Esc>:FZF<CR>
 
 " =================== ESC based ======================
 noremap <Esc>q :wa<CR>:q<CR>
