@@ -13,6 +13,7 @@ APT_PACKAGES=" \
     flake8 \
     isort \
     python3-dev \
+    ripgrep \
     shellcheck \
     shfmt \
     tmux \
@@ -24,7 +25,7 @@ APT_PACKAGES=" \
     vim-nox \
     vim-solarized \
     vim-youcompleteme \
-    yamllint
+    yamllint \
 "
 
 vim_enable()
