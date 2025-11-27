@@ -92,7 +92,6 @@ install_vim()
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/Xuyuanp/nerdtree-git-plugin.git
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/jistr/vim-nerdtree-tabs.git
     git_clone "${VIM_ADDONS_EXTRA}" https://github.com/rbgrouleff/bclose.vim.git
-    git_clone "${VIM_ADDONS_EXTRA}" https://github.com/github/copilot.vim.git
 }
 
 install_tmux()
