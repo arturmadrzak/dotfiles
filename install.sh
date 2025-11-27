@@ -28,6 +28,10 @@ APT_PACKAGES=" \
     yamllint \
 "
 
+APT_BLACKLIST=" \
+    wl-clipboard \
+"
+
 vim_enable()
 {
     name=${1?Missing pack name}
@@ -69,6 +73,12 @@ git_clone()
 
 install_apt()
 {
+    for _pkg in ${APT_BLACKLIST}; do
+        if dpkg -s "${_pkg}" >/dev/null 2>&1; then
+            echo "[REMOVE] ${_pkg}"
+            sudo /bin/sh -c "apt remove --yes ${_pkg}"
+        fi
+    done
     for _pkg in ${APT_PACKAGES}; do
         if ! dpkg -s "${_pkg}" >/dev/null 2>&1; then
             _not_installed="${_not_installed:-} ${_pkg}"
