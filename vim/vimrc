@@ -58,6 +58,11 @@ set shiftwidth=4       " for when <TAB> is pressed at the beginning of a line
 " completer options
 "set completeopt=longest,menuone
 
+" use ripgrep for searching
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ --no-heading
+endif
+
 " Mouse settings
 if has('mouse')
   set mouse=a          " if mouse is available make use of it
