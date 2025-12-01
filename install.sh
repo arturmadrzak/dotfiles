@@ -2,6 +2,8 @@
 
 set -eu
 
+. gnome.sh
+
 VIM_ADDONS_EXTRA=${HOME}/.local/share/vim/addons
 TMUX_PLUGINS=${HOME}/.tmux/plugins
 
@@ -25,6 +27,7 @@ APT_PACKAGES=" \
     vim-nox \
     vim-solarized \
     vim-youcompleteme \
+    wmctrl \
     yamllint \
 "
 
@@ -124,6 +127,27 @@ install_editorconfig()
     install -m 644 -T editorconfig "${HOME}/.editorconfig"
 }
 
+install_bins()
+{
+    for script in bin/*; do
+        echo "[INSTALL] $(basename "${script}")"
+        install -m 644 -t "${HOME}/.local/bin/" "${script}"
+    done
+}
+
+install_desktop_files()
+{
+    for file in share/applications/*desktop; do
+        echo "[INSTALL] $(basename "${file}")"
+        install -m 644 -t "${HOME}/.local/share/applications/" "${file}"
+    done
+}
+
+install_keybindings()
+{
+    gnome_set_binding "<Super>c" chatgpt-launcher
+}
+
 main()
 {
     install_apt
@@ -131,6 +155,9 @@ main()
     install_editorconfig
     install_vim
     install_fuzzy_completer
+    install_bins
+    install_desktop_files
+    install_keybindings
 }
 
 main "${@}"

@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+WM_CLASS="chatgpt"
+DESKTOP_ID="chatgpt.desktop"
+
+WIN_ID=$(wmctrl -lx | grep "$WM_CLASS" | awk '{print $1}')
+
+if [ -n "$WIN_ID" ]; then
+    wmctrl -ia "$WIN_ID"
+else
+    gtk-launch "$DESKTOP_ID" > /dev/null 2>&1
+fi
+

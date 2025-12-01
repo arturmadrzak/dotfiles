@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#22b87f"/>
+      <stop offset="100%" stop-color="#1a865f"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Zaokrąglony prostokąt jak ikony Adwaita -->
+  <rect
+    x="48"
+    y="48"
+    width="416"
+    height="416"
+    rx="96"
+    ry="96"
+    fill="url(#bg)"/>
+
+  <!-- Delikatny „błysk” w lewym górnym rogu -->
+  <path
+    d="M96 196 Q 128 120 208 96 L 304 96 Q 240 128 196 192 Z"
+    fill="#ffffff22"/>
+
+  <!-- Okrąg symbolizujący „mózg / chmurę AI” -->
+  <circle
+    cx="256"
+    cy="252"
+    r="120"
+    fill="#ffffff11"
+    stroke="#ffffff44"
+    stroke-width="8"/>
+
+  <!-- Stylizowany symbol AI (łączące się węzły) -->
+  <path
+    d="M256 152
+       C 214 152 184 182 184 224
+       C 184 246 194 266 211 280
+       L 190 316
+       C 184 326 188 340 199 346
+       C 210 352 224 348 230 338
+       L 252 300
+       C 253 300 255 300 256 300
+       C 298 300 328 270 328 228
+       C 328 186 298 152 256 152 Z
+      "
+    fill="#ffffffdd"/>
+
+  <!-- Napisy GPT na dole (czytelne w ciemnym motywie) -->
+  <text
+    x="256"
+    y="360"
+    text-anchor="middle"
+    font-family="Cantarell, system-ui, sans-serif"
+    font-weight="bold"
+    font-size="82"
+    fill="#ffffffee">
+    GPT
+  </text>
+</svg>
+

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ChatGPT
+GenericName=ChatGPT AI Assistant
+Comment=Chat with ChatGPT in a standalone window
+Exec=vivaldi --app=https://chatgpt.com/ --enable-features=IsolateOrigins,site-per-process --class=chatgpt
+Terminal=false
+Type=Application
+Icon=chatgpt
+StartupWMClass=chatgpt
+Categories=Utility;X-AI;
