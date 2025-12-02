@@ -158,6 +158,8 @@ main()
     install_bins
     install_desktop_files
     install_keybindings
+    echo "[SYSTEMD] Mask user's gpg-agent"
+    systemctl --user list-unit-files --no-legend --no-pager '*gpg*' | cut -f 1 -d ' ' | xargs systemctl --user mask --now
 }
 
 main "${@}"
