@@ -158,6 +158,10 @@ main()
     install_bins
     install_desktop_files
     install_keybindings
+
+    echo "[INSTALL] bash_aliases"
+    install -m 644 -T bash_aliases "${HOME}/.bash_aliases"
+
     echo "[SYSTEMD] Mask user's gpg-agent"
     systemctl --user list-unit-files --no-legend --no-pager '*gpg*' | cut -f 1 -d ' ' | xargs systemctl --user mask --now
 }
