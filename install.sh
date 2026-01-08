@@ -11,6 +11,8 @@ TMUX_PLUGINS=${HOME}/.tmux/plugins
 APT_PACKAGES=" \
     autoimport \
     black \
+    docker-buildx \
+    docker.io \
     editorconfig \
     flake8 \
     isort \
@@ -38,6 +40,17 @@ APT_BLACKLIST_X11="\
 
 APT_BLACKLIST_WAYLAND="\
 "
+
+
+add_to_group()
+{
+    grp=${1:?Missing group}
+    if ! groups | grep -q "${grp}"; then
+        if ! usermod -a -G "${grp}" artur; then
+            echo "Can't add 'artur' to group '${grp}'"
+        fi
+    fi
+}
 
 vim_enable()
 {
@@ -174,6 +187,8 @@ main()
 
     echo "[SYSTEMD] Mask user's gpg-agent"
     systemctl --user list-unit-files --no-legend --no-pager '*gpg*' | cut -f 1 -d ' ' | xargs systemctl --user mask --now
+    add_to_group dialout
+    add_to_group docker
 }
 
 main "${@}"
