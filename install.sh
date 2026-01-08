@@ -32,8 +32,11 @@ APT_PACKAGES=" \
     yamllint \
 "
 
-APT_BLACKLIST=" \
-    wl-clipboard \
+APT_BLACKLIST_X11="\
+    wl-clipboard
+"
+
+APT_BLACKLIST_WAYLAND="\
 "
 
 vim_enable()
@@ -77,7 +80,13 @@ git_clone()
 
 install_apt()
 {
-    for _pkg in ${APT_BLACKLIST}; do
+    if [ "${XDG_SESSION_TYPE:-x11}" == "wayland" ]; then
+        list=${APT_BLACKLIST_WAYLAND}
+    else
+        list=${APT_BLACKLIST_X11}
+    fi
+
+    for _pkg in ${list}; do
         if dpkg -s "${_pkg}" >/dev/null 2>&1; then
             echo "[REMOVE] ${_pkg}"
             sudo /bin/sh -c "apt remove --yes ${_pkg}"
