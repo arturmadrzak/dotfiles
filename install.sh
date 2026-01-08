@@ -131,7 +131,7 @@ install_bins()
 {
     for script in bin/*; do
         echo "[INSTALL] $(basename "${script}")"
-        install -m 644 -t "${HOME}/.local/bin/" "${script}"
+        install -m 755 -t "${HOME}/.local/bin/" "${script}"
     done
 }
 
