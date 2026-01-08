@@ -56,7 +56,7 @@ gnome_kb_find_binding_path() {
 $(gnome_kb_each_path)
 EOF
 
-    return 1
+    return 0
 }
 
 gnome_kb_append_path_list() {
