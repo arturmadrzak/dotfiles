@@ -2,7 +2,7 @@
 Name=ChatGPT
 GenericName=ChatGPT AI Assistant
 Comment=Chat with ChatGPT in a standalone window
-Exec=vivaldi --app=https://chatgpt.com/ --enable-features=IsolateOrigins,site-per-process --class=chatgpt
+Exec=vivaldi --app=https://chatgpt.com/ --enable-features=IsolateOrigins,site-per-process --class=chatgpt --new-window --profile-directory="Profile 1"
 Terminal=false
 Type=Application
 Icon=chatgpt
