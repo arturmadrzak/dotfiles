@@ -19,5 +19,6 @@ export HISTFILESIZE=20000
 export HISTSIZE=10000
 export OPENAI_API_KEY="$(secret-tool lookup Title openai-cli-token)"
 export PYLINT_VENV_PATH=venv:.venv:venv2:.virtualenv
+export RCLONE_CONFIG_PASS="$(secret-tool lookup Title RCloneConfig)"
 
 # vim: ft=sh
