@@ -11,14 +11,14 @@ TMUX_PLUGINS=${HOME}/.tmux/plugins
 APT_PACKAGES=" \
     autoimport \
     black \
-    docker-buildx \
-    docker.io \
+    docker-ce
     editorconfig \
     flake8 \
     isort \
-    msmpt \
-    msmpt-mta \
+    msmtp \
+    msmtp-mta \
     python3-dev \
+    python3-watchdog \
     rclone \
     ripgrep \
     shellcheck \
@@ -181,6 +181,15 @@ install_mail()
     install -m 644 -T msmtprc "${HOME}/.msmtprc"
 }
 
+install_systemd_user()
+{
+    for service in systemd/*.service; do
+        echo "[INSTALL] $(basename "${service}")"
+        install -D -m 644 -t "${HOME}/.local/share/systemd/user/" "${service}"
+        systemctl --user enable "$(basename "${service}")"
+    done
+}
+
 main()
 {
     install_apt
@@ -192,6 +201,7 @@ main()
     install_desktop_files
     install_keybindings
     install_mail
+    install_systemd_user
 
     echo "[INSTALL] bash_aliases"
     install -m 644 -T bash_aliases "${HOME}/.bash_aliases"
