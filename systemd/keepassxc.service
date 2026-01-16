@@ -1,0 +1,13 @@
+[Unit]
+Description=KeePassXC Password Manager
+Conflicts=gnome-keyring-daemon.service
+Before=gnome-keyring-daemon.service
+Wants=dbus.socket ssh-agent.service graphical-session.target
+After=dbus.socket ssh-agent.service graphical-session.target
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/keepassxc
+
+[Install]
+WantedBy=gnome-session.target

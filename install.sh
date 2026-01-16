@@ -15,6 +15,7 @@ APT_PACKAGES=" \
     flake8 \
     isort \
     python3-dev \
+    python3-watchdog \
     rclone \
     ripgrep \
     shellcheck \

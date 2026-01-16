@@ -1,0 +1,15 @@
+# /home/artur/.config/systemd/user/keepassxc.service
+[Unit]
+Description=KeePassXC Password Manager
+After=keepassxc.service
+Requires=keepassxc.service
+PartOf=keepassxc.service
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -lc "%h/.local/bin/keepass-sync.py"
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=gnome-session.target
