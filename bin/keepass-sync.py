@@ -4,12 +4,16 @@ import logging
 import subprocess
 import json
 import hashlib
+import secretstorage
+import time
+import os
 
 from datetime import datetime, timezone
 from pathlib import Path
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
-
+from contextlib import closing
+from typing import Sequence
 
 XDG_CONFIG_HOME = Path(Path.home() / "projects/madrzak/dotfiles/bin")
 XDG_DATA_HOME = Path(Path.home() / "projects/madrzak/dotfiles/bin")
@@ -48,6 +52,7 @@ class UserInterface:
             f"--app-name='{self.app_name}'",
             "--urgency=normal",
             "--icon=emblem-synchronizing",
+            "expire-time=10000",
             title,
             body,
             ],
@@ -76,8 +81,8 @@ class UserInterface:
             "--question",
             f"--title={self.app_name}",
             f"--text={text}",
-            "--ok-label=Remote",
-            "--cancel-label=Local",
+            "--ok-label=Download remote",
+            "--cancel-label=Upload local",
             "--extra-button=Manual",
             "--timeout=30",
             "--icon=emblem-important",
@@ -114,23 +119,25 @@ class UserInterface:
 
 
 class RClone:
-    def __init__(self, storage: str):
+    def __init__(self, storage: str, password: str = None):
         self.storage = storage
+        self.password = password
+
+    def _run_rclone(self, *args: str):
+        env = os.environ.copy()
+        if self.password is not None:
+            env["RCLONE_CONFIG_PASS"] = self.password
+        cmd: Sequence[str] = ["rclone", *args]
+        return subprocess.run(cmd, env=env, text=True, capture_output=True)
 
     def md5sum(self, filename: str) -> str:
         rpath = self.storage + ":" + filename
-        result = subprocess.run(["rclone", "md5sum", rpath],
-                                text=True,
-                                capture_output=True,
-                                )
+        result = self._run_rclone("md5sum", rpath)
         return result.stdout.split()[0]
 
     def mtime(self, filename: str) -> int:
         rpath = self.storage + ":" + filename
-        result = subprocess.run(["rclone", "lsjson", "-l", rpath],
-                                text=True,
-                                capture_output=True,
-                                )
+        result = self._run_rclone("lsjson", "-l", rpath)
         if result.returncode == 0:
             data = json.loads(result.stdout)
             mod_time = data[0]["ModTime"]
@@ -140,18 +147,12 @@ class RClone:
 
     def from_remote(self, source, dest):
         rpath = self.storage + ":" + source
-        result = subprocess.run(["rclone", "copyto", rpath, str(dest)],
-                                text=True,
-                                capture_output=True,
-                                )
+        result = self._run_rclone("copyto", rpath, str(dest))
         return result.returncode
 
     def copyto(self, source, dest):
         rpath = self.storage + ":" + dest
-        result = subprocess.run(["rclone", "copyto", str(source), rpath],
-                                text=True,
-                                capture_output=True,
-                                )
+        result = self._run_rclone("copyto", str(source), rpath)
         return result.returncode
 
 
@@ -178,55 +179,72 @@ class FileModifiedHandler(FileSystemEventHandler):
 
     def on_modified(self, event):
         if Path(event.src_path).resolve() == self.lfile:
-            self.upload()
+            self.sync()
 
     def on_moved(self, event):
         if Path(event.dest_path).resolve() == self.lfile:
-            self.upload()
+            self.sync()
 
+    # TODO: resolve, nope, manuall action needed. XC doesn't have option of database merging
+    # as mobile app has :/
     def _handle_conflict(self):
         logging.error("conflict: remote and local modified")
+        rtime = self.rclone.mtime(self.rfile)
+        lrtime = self.meta["mtime"]
+        ltime = datetime.fromtimestamp(self.lfile.stat().st_mtime,
+                                       tz=timezone.utc)
         answer = self.ui.conflict(
             f"Both local and remote copy of {self.rfile} changed.\n"
+            f"remote: {rtime}\n"
+            f"local: {ltime} (based on: {lrtime}\n"
             "How would you like to resolve it:"
             )
         if answer == 5:
             cfile = self.lfile.with_name(self.lfile.name + ".remote")
-            self.fetch(cfile)
+            self.rclone.from_remote(self.rfile, cfile)
             self.ui.info_copyable("Remote file has been saved as:", cfile)
             logging.info("restarting due to manual conflict resolution")
             exit(1)
         elif answer == 1:
             logging.info("user decided to use local file")
             self.upload()
-        # TODO: use remote
+        elif answer == 0:
+            logging.info("user decided to use remte file")
+            self.download()
 
     def sync(self):
         lmd5sum = hashlib.md5(self.lfile.read_bytes()).hexdigest()
+        # check if local file has changed since last sync
         if self.meta.data["md5sum"] != lmd5sum:
+            # check if remote file has also changed
             if self.meta.data["md5sum"] != self.rclone.md5sum(self.rfile):
+                # both local and remote changed, resolve manually or overwrite
+                # TODO: try to resolve conflict by modification time
                 self._handle_conflict()
             else:
-                logging.warning("local file modified externally")
+                logging.warning("local file has changed since last upload")
                 self.upload()
         elif self.meta.data["md5sum"] != self.rclone.md5sum(self.rfile):
-            logging.info("local and remote files differ")
-            self.upload()
+            # remote file changed, download it
+            logging.info("remote file has been updated")
+            self.download()
         else:
             logging.info("remote and local file are the same")
 
-    def fetch(self, target: Path = None):
-        if target is None:
-            target = self.lfile
-        self.rclone.from_remote(self.rfile, target)
-        logging.info("file: '%s' downloaded as '%s'", self.rfile, target)
+    def download(self):
+        self.rclone.from_remote(self.rfile, self.lfile)
+        self.meta.data["mtime"] = str(self.rclone.mtime(self.rfile))
+        self.meta.data["md5sum"] = self.rclone.md5sum(self.rfile)
+        self.meta.store()
+        self.ui.info("Sync", f"{self.lfile} has been downloaded")
+        logging.info("file: '%s' downloaded", self.rfile)
 
     def upload(self):
         self.rclone.copyto(self.lfile, self.rfile)
         self.meta.data["mtime"] = str(self.rclone.mtime(self.rfile))
         self.meta.data["md5sum"] = self.rclone.md5sum(self.rfile)
         self.meta.store()
-        self.ui.info("Sync", f"{self.lfile} has been sync")
+        self.ui.info("Sync", f"{self.lfile} has been uploaded")
         logging.info("file: '%s' uploaded to remote", self.rfile)
 
 
@@ -234,22 +252,32 @@ class FileModifiedHandler(FileSystemEventHandler):
 
 
 def main():
-    # TODO: rclone use keepassxc to get secrets to decrypt storage. Hence, even
-    # if
-    # database is out of sync, keepassxc must first unlock storage. Having that
-    # sync service can fetch credentials and do a proper sync. This can be done
-    # via D-Bus api.
-
     db_file = Path(Path.home() / "SynologyDrive" / "the_bundle.kdbx").resolve()
     meta_file = Path(XDG_DATA_HOME / "dbfile.json").resolve()
-
     r_disk = "secret-share"
+    rclone_password = None
 
-    logging.info("db: %s", db_file)
-    logging.info("meta: %s", meta_file)
-    logging.info("remote: %s", r_disk)
+    with closing(secretstorage.dbus_init()) as dbus:
+        while True:
+            collection = secretstorage.get_default_collection(dbus)
+            if collection.is_locked():
+                logging.info("secret storage still locked")
+                time.sleep(1)
+            items = list(collection.search_items({"Title": "RCloneConfig"}))
+            if not items:
+                logging.error("RCloneConfig secret not found")
+                return 1
+            item = items[0]
+            if item.is_locked():
+                item.unlock()
+                while item.is_locked():
+                    time.sleep(0.5)
 
-    rclone = RClone(r_disk)
+            rclone_password = item.get_secret()
+            logging.info("rclone credentials obtained")
+            break
+
+    rclone = RClone(r_disk, rclone_password)
     meta = JsonFile(meta_file)
     ui = UserInterface("KeePassXC sync service")
 
