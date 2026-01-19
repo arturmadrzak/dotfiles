@@ -132,11 +132,13 @@ install_vim()
 
 install_tmux()
 {
-    echo "[INSTALL] tmux plugins"
+    echo "[INSTALL] tmux plugin manager"
     mkdir -p "${TMUX_PLUGINS}"
     git_clone "${TMUX_PLUGINS}" https://github.com/tmux-plugins/tpm.git
     echo "[INSTALL] tmux.conf"
     install -m 644 -T tmux.conf "${HOME}/.tmux.conf"
+    echo "[INSTALL] tmux plugins"
+    ~/.tmux/plugins/tpm/bin/install_plugins
 }
 
 install_fuzzy_completer()
