@@ -17,8 +17,11 @@ export DOCKER_BUILDKIT=1
 export FZF_DEFAULT_OPTS='--tmux bottom'
 export HISTFILESIZE=20000
 export HISTSIZE=10000
-export OPENAI_API_KEY="$(secret-tool lookup Title openai-cli-token)"
 export PYLINT_VENV_PATH=venv:.venv:venv2:.virtualenv
-export RCLONE_CONFIG_PASS="$(secret-tool lookup Title RCloneConfig)"
+
+if [ -n "${SSH_TTY:-}" ]; then
+    export OPENAI_API_KEY="$(secret-tool lookup Title openai-cli-token)"
+    export RCLONE_CONFIG_PASS="$(secret-tool lookup Title RCloneConfig)"
+fi
 
 # vim: ft=sh
