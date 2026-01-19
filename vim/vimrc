@@ -43,6 +43,8 @@ set wildmenu
 set listchars=eol:$,trail:·,tab:»·
 " configure wildmenu to ignore some not wanted files
 set wildignore+=*.o,*.d,*.elf
+" use normal clipboard shared with Ctrl-C/Shift-Ins
+set clipboard=unnamedplus
 " enable project specific vimrc
 set exrc
 if exists('&breakindent')
