@@ -16,6 +16,8 @@ APT_PACKAGES=" \
     editorconfig \
     flake8 \
     isort \
+    msmpt \
+    msmpt-mta \
     python3-dev \
     rclone \
     ripgrep \
@@ -173,6 +175,12 @@ install_keybindings()
     gnome_set_binding "<Super>c" chatgpt-launcher
 }
 
+install_mail()
+{
+    echo "[INSTALL] email"
+    install -m 644 -T msmtprc "${HOME}/.msmtprc"
+}
+
 main()
 {
     install_apt
@@ -183,6 +191,7 @@ main()
     install_bins
     install_desktop_files
     install_keybindings
+    install_mail
 
     echo "[INSTALL] bash_aliases"
     install -m 644 -T bash_aliases "${HOME}/.bash_aliases"
