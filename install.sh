@@ -15,6 +15,8 @@ APT_PACKAGES=" \
     editorconfig \
     flake8 \
     isort \
+    keepassxc \
+    keepassxc-full \
     msmtp \
     msmtp-mta \
     python3-dev \
@@ -190,6 +192,18 @@ install_systemd_user()
     done
 }
 
+install_keepassxc()
+{
+    echo "[INSTALL] keepassxc"
+    systemctl --user mask gnome-keyring-daemon.socket gnome-keyring-daemon.service
+    install -m 0644 -D -t "${HOME}/.config/systemd/user" systemd/keepassxc.service
+    install -m 0644 -D -t "${HOME}/.local/share/dbus-1/services" \
+        share/dbus-1/services/org.freedesktop.secrets.service
+    systemctl --user enable keepassxc.service
+    echo "***** NOTICE *****"
+    echo "Do not forget to enable Secret Service Integration in KeepassXC UI"
+}
+
 main()
 {
     install_apt
@@ -212,6 +226,8 @@ main()
     systemctl --user list-unit-files --no-legend --no-pager '*gpg*' | cut -f 1 -d ' ' | xargs systemctl --user mask --now
     add_to_group dialout
     add_to_group docker
+
+    install_keepassxc
 }
 
 main "${@}"
