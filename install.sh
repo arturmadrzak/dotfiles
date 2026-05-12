@@ -21,6 +21,7 @@ APT_PACKAGES=" \
     msmtp-mta \
     python3-dev \
     python3-watchdog \
+    python3-secretstorage \
     rclone \
     ripgrep \
     shellcheck \
