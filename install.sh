@@ -205,6 +205,17 @@ install_keepassxc()
     echo "Do not forget to enable Secret Service Integration in KeepassXC UI"
 }
 
+install_npm()
+{
+    echo "prefix=/home/artur/.local" > "${HOME}/.npmrc"
+}
+
+install_codex()
+{
+    grep -qxF '.codex' "${HOME}/.gitignore" || echo '.codex' >> "${HOME}/.gitignore"
+    npm install -g @openai/codex
+}
+
 main()
 {
     install_apt
@@ -217,8 +228,8 @@ main()
     install_keybindings
     install_mail
     install_systemd_user
-
-    grep -qxF '.codex' "${HOME}/.gitignore" || echo '.codex' >> "${HOME}/.gitignore"
+    install_npm
+    install_codex
 
     echo "[INSTALL] bash_aliases"
     install -m 644 -T bash_aliases "${HOME}/.bash_aliases"
