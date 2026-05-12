@@ -229,6 +229,9 @@ main()
     add_to_group docker
 
     install_keepassxc
+
+    # NOTE: This holds encrypted information about secure-storage drive
+    echo  "Do not forget to provide encrypted ~/.config/rclone/rclone.conf"
 }
 
 main "${@}"
