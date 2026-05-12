@@ -203,6 +203,8 @@ main()
     install_mail
     install_systemd_user
 
+    grep -qxF '.codex' "${HOME}/.gitignore" || echo '.codex' >> "${HOME}/.gitignore"
+
     echo "[INSTALL] bash_aliases"
     install -m 644 -T bash_aliases "${HOME}/.bash_aliases"
 
