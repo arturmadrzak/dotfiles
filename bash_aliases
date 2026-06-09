@@ -6,6 +6,7 @@ alias hadolint='docker run --rm -i hadolint/hadolint'
 alias rgl="rg -l"
 alias rmorig="find . -type f -name '*.orig' -print -exec rm -f {} +"
 alias wakenuc="wakeonlan 88:AE:DD:07:6B:A9"
+alias wakeryzen="wakeonlan 18:c0:4d:9c:41:97"
 alias yamlint='docker run -it --rm -v "${PWD}:/workdir" ghcr.io/ffurrer2/yamllint:latest'
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
