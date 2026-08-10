@@ -11,6 +11,7 @@ TMUX_PLUGINS=${HOME}/.tmux/plugins
 APT_PACKAGES=" \
     autoimport \
     black \
+    distrobox \
     docker-ce
     editorconfig \
     flake8 \
@@ -216,6 +217,11 @@ install_codex()
     npm install -g @openai/codex
 }
 
+configure_distrobox()
+{
+    install -m 0644 -D -t "${HOME}/.config/distrobox" config/distrobox/distrobox.conf
+}
+
 main()
 {
     install_apt
@@ -240,6 +246,7 @@ main()
     add_to_group docker
 
     install_keepassxc
+    configure_distrobox
 
     # NOTE: This holds encrypted information about secure-storage drive
     echo  "Do not forget to provide encrypted ~/.config/rclone/rclone.conf"
