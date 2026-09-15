@@ -25,4 +25,32 @@ if [ -z "${SSH_TTY:-}" ]; then
     export RCLONE_CONFIG_PASS="$(secret-tool lookup Title RCloneConfig)"
 fi
 
+gh() {
+    local dir home
+
+    dir="$(pwd -P)"
+    home="$(cd "$HOME" && pwd -P)"
+
+    # Only walk directories below $HOME.
+    case "$dir/" in
+        "$home/"*) ;;
+        *)
+            command gh "$@"
+            return
+            ;;
+    esac
+
+    while true; do
+        if [[ -d "$dir/.config/gh" ]]; then
+            GH_CONFIG_DIR="$dir/.config/gh" command gh "$@"
+            return
+        fi
+
+        [[ "$dir" == "$home" ]] && break
+        dir="${dir%/*}"
+    done
+
+    command gh "$@"
+}
+
 # vim: ft=sh
