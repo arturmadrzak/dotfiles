@@ -177,6 +177,7 @@ install_desktop_files()
 install_keybindings()
 {
     gnome_set_binding "<Super>c" chatgpt-launcher
+    gnome_set_binding "<Super>n" "gtk-launch chatgpt-webapp.desktop"
 }
 
 install_mail()

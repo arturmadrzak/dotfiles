@@ -1,10 +1,14 @@
 [Desktop Entry]
-Name=ChatGPT
+Name=ChatGPT-Webapp
 GenericName=ChatGPT AI Assistant
 Comment=Chat with ChatGPT in a standalone window
 Exec=vivaldi --app=https://chatgpt.com/g/g-p-690cadd79e28819188e1117b235560ed-softdev/project --enable-features=IsolateOrigins,site-per-process --class=chatgpt-webapp --new-window --profile-directory="Profile 1"
 Terminal=false
 Type=Application
 Icon=chatgpt-webapp
-StartupWMClass=chatgpt-webapp
+# NOTE: class may be broken. vivaldi overwrite it as:
+# vivaldi-<host>_<path>-<profile>
+# to check wmclass run: <Super>+F2 and type 'lg'
+# also sync with chatgpt-launcher
+StartupWMClass=vivaldi-chatgpt.com__g_g-p-690cadd79e28819188e1117b235560ed-softdev_project-Profile_1
 Categories=Utility;X-AI;

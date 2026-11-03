@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
+# Launcher require run-or-raise gnome extension
+# NOTE: align WM_CLASS with desktop file
 
-WM_CLASS="chatgpt-webapp"
-DESKTOP_ID="chatgpt-webapp.desktop"
+WM_CLASS="vivaldi-chatgpt.com__g_g-p-690cadd79e28819188e1117b235560ed-softdev_project-Profile_1"
 
-WIN_ID=$(wmctrl -lx | grep "$WM_CLASS" | awk '{print $1}')
-
-if [ -n "$WIN_ID" ]; then
-    wmctrl -ia "$WIN_ID"
-else
-    gtk-launch "$DESKTOP_ID" > /dev/null 2>&1
+if ! error=$(gdbus call --session \
+    --dest org.gnome.Shell \
+    --object-path /org/gnome/Shell/Extensions/RunOrRaise \
+    --method org.gnome.Shell.Extensions.RunOrRaise.Call \
+    ",chatgpt-webapp.desktop,$WM_CLASS," 2>&1)
+then
+    zenity --error --title="ChatGPT launcher" --text="$error"
 fi
-
