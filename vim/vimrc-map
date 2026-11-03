@@ -51,3 +51,6 @@ noremap <C-PageDown> G
 "inoremap <C-n> <C-x><C-o>
 "inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
 "autocmd CompleteDone * pclose
+
+" ctrl-c copies to system clipboard
+xnoremap <C-c> "+y

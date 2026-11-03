@@ -15,14 +15,15 @@ APT_PACKAGES=" \
     docker-ce
     editorconfig \
     flake8 \
+    ghostty \
     isort \
     keepassxc \
     keepassxc-full \
     msmtp \
     msmtp-mta \
     python3-dev \
-    python3-watchdog \
     python3-secretstorage \
+    python3-watchdog \
     rclone \
     ripgrep \
     shellcheck \
@@ -227,6 +228,11 @@ configure_distrobox()
     install -m 0644 -D -t "${HOME}/.config/distrobox" config/distrobox/distrobox.conf
 }
 
+configure_ghostty()
+{
+    install -m 0644 -D -t "${HOME}/.config/ghostty" config/ghostty/config.ghostty
+}
+
 main()
 {
     install_apt
@@ -252,6 +258,7 @@ main()
 
     install_keepassxc
     configure_distrobox
+    configure_ghostty
 
     # NOTE: This holds encrypted information about secure-storage drive
     echo  "Do not forget to provide encrypted ~/.config/rclone/rclone.conf"
