@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-WM_CLASS="chatgpt"
-DESKTOP_ID="chatgpt.desktop"
+WM_CLASS="chatgpt-webapp"
+DESKTOP_ID="chatgpt-webapp.desktop"
 
 WIN_ID=$(wmctrl -lx | grep "$WM_CLASS" | awk '{print $1}')
 

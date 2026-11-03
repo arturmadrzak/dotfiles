@@ -214,7 +214,11 @@ install_npm()
 install_codex()
 {
     grep -qxF '.codex' "${HOME}/.gitignore" || echo '.codex' >> "${HOME}/.gitignore"
-    npm install -g @openai/codex
+    if command -v codex > /dev/null; then
+        codex update
+    else
+        curl -fsSL https://chatgpt.com/codex/install.sh | sh
+    fi
 }
 
 configure_distrobox()
