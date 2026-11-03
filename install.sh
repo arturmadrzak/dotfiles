@@ -152,7 +152,7 @@ install_fuzzy_completer()
 {
     git_clone "${HOME}/.local/share" https://github.com/junegunn/fzf.git
     "${HOME}/.local/share/fzf/install" --all > /dev/null
-    ln -s "${HOME}/.local/share/fzf/bin/fzf" -t "${HOME}/.local/bin/"
+    ln -sf "${HOME}/.local/share/fzf/bin/fzf" -t "${HOME}/.local/bin/"
 }
 
 install_editorconfig()
