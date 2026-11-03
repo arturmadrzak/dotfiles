@@ -27,6 +27,15 @@ else
     echo "WARNING: secret-tool not found"
 fi
 
+if [ -n "$DISTROBOX_ENTER_PATH" ]; then
+    codename="$(. /etc/os-release && echo "$VERSION_CODENAME")"
+
+    PS1='\[\e]0;\u@distrobox('"$codename"'): \w\a\]'
+    PS1+='${debian_chroot:+($debian_chroot)}'
+    PS1+='\[\e[1;38;5;208m\]\u@distrobox('"$codename"')\[\e[0m\]:'
+    PS1+='\[\e[1;38;5;141m\]\w\[\e[0m\]\$ '
+fi
+
 gh() {
     local dir home
 
