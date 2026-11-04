@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+session="\$${TMUX##*,}"
+
+selected=$(
+    tmux list-panes -s -t "$session" \
+        -F '#{pane_id} #{window_id} | #{window_index}:#{window_name} [#{pane_index}] #{pane_current_command} #{pane_current_path}' |
+        env -u FZF_DEFAULT_OPTS fzf \
+            --reverse \
+            --border \
+            --prompt='Pane > ' \
+            --with-nth=4.. \
+            --preview='tmux capture-pane -p -t {1} -S -30' \
+            --preview-window='right:50%:wrap'
+) || exit 0
+
+read -r pane window _ <<< "$selected"
+
+tmux select-window -t "${session}:${window}"
+tmux select-pane -t "$pane"
