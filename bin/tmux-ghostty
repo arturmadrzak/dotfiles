@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+
+tm() {
+    tmux -S "$socket" "$@"
+}
+
+open_ghostty() {
+    ghostty +new-window --working-directory="$HOME" \
+        -e env -u TMUX tmux -S "$socket" attach-session -t "$1"
+}
+
+action=${1:?Usage: tmux-getty clone|move PANE_ID}
+pane=${2:?Missing pane ID}
+socket=${TMUX%%,*}
+
+# Resolve source from the selected pane
+session=$(tm display-message -p -t "$pane" '#{session_id}')
+window=$(tm display-message -p -t "$pane" '#{window_id}')
+window_index=$(tm display-message -p -t "$pane" '#{window_index}')
+windows=$(tm display-message -p -t "$pane" '#{session_windows}')
+panes=$(tm display-message -p -t "$pane" '#{window_panes}')
+
+case "$action" in
+    clone)
+        # Create grouped session (shared windows, independent navigation)
+        dest=$(tm new-session -d -t "$session" -P -F '#{session_id}')
+
+        # Select the same window in the cloned session
+        tm select-window -t "${dest}:${window_index}"
+        ;;
+
+    move)
+        # Never move the last window of a session
+        (( windows > 1 )) || exit 0
+
+        # Create an independent destination session
+        dest=$(tm new-session -d -P -F '#{session_id}')
+
+        # Remember its initial placeholder window
+        placeholder=$(tm display-message -p -t "$dest" '#{window_id}')
+        index=$(tm display-message -p -t "$dest" '#{window_index}')
+        target="${dest}:$((index + 1))"
+
+        if (( panes == 1 )); then
+            # Move entire window (tab)
+            if ! tm move-window -d -s "${session}:${window_index}" -t "$target"; then
+                tm kill-session -t "$dest"
+                exit 1
+            fi
+        else
+            # Extract selected pane into a new window
+            if ! tm break-pane -d -s "$pane" -t "$target"; then
+                tm kill-session -t "$dest"
+                exit 1
+            fi
+        fi
+        
+        tm set-option -p -t "$pane" @getty_origin_session "$session"
+        tm set-option -p -t "$pane" @getty_origin_window "$window"
+
+        # Remove temporary window
+        tm kill-window -t "$placeholder"
+        ;;
+
+    join)
+        origin_session=$(tm show-option -pqv -t "$pane" @getty_origin_session)
+        origin_window=$(tm show-option -pqv -t "$pane" @getty_origin_window)
+
+        # Not a detached pane
+        [[ -n "$origin_session" && -n "$origin_window" ]] || exit 0
+
+        # Original session must still exist
+        tm has-session -t "$origin_session" 2>/dev/null || exit 0
+
+        if [[ "$window" == "$origin_window" ]]; then
+            # Entire window was moved
+            tm move-window -d -s "$window" -t "${origin_session}:"
+        else
+            # Single pane was extracted from a larger window
+            tm display-message -p -t "$origin_window" '#{window_id}' \
+                >/dev/null 2>&1 || exit 0
+
+            tm join-pane -d -s "$pane" -t "$origin_window"
+        fi
+
+        # Clear origin metadata
+        tm set-option -pu -t "$pane" @getty_origin_session
+        tm set-option -pu -t "$pane" @getty_origin_window
+        exit 0
+        ;;
+
+    *)
+        echo "Unknown action: $action" >&2
+        exit 1
+        ;;
+esac
+
+# Open a separate Ghostty window attached to the destination
+if ! open_ghostty "$dest"; then
+    echo "Failed to open Ghostty. tmux session $dest still exists." >&2
+    exit 1
+fi
+
