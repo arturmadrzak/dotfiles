@@ -30,6 +30,9 @@ noremap <Esc>q :wa<CR>:q<CR>
 " =================== Leader based  ===================
 " Set leadery key mapping
 let mapleader="`"
+nmap <F12> <Leader>
+xmap <F12> <Leader>
+
 " jump forward
 noremap <Leader><Right> <C-i>
 " jump backward
@@ -54,3 +57,12 @@ noremap <C-PageDown> G
 
 " ctrl-c copies to system clipboard
 xnoremap <C-c> "+y
+
+" command palette
+nnoremap <silent> <Leader>o :FZF<CR>
+nnoremap <silent> <Leader>p :Commands<CR>
+nnoremap <silent> <Leader>l :Buffers<CR>
+nnoremap <silent> <Leader>k :Maps<CR>
+
+" format selected text (Visual)
+xnoremap <silent> <Leader>g gq
