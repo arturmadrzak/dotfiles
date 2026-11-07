@@ -1,5 +1,16 @@
 " Shortcuts
 
+" TODO: move it somewhere else
+function! s:SearchRg(query, literal) abort
+    update
+
+    let l:cmd = 'rg --column --line-number --no-heading --color=always --smart-case '
+    if a:literal
+        let l:cmd .= '--fixed-strings '
+    endif
+
+    call fzf#vim#grep2(l:cmd . '-- ', a:query, fzf#vim#with_preview(), 0)
+endfunction
 
 " =================== Functional Keys ==================
 " pervious buffer
@@ -45,6 +56,10 @@ noremap <Leader>. :execute "vimgrep /".expand("<cword>")."/ **"<Bar>cw<CR>
 
 " toggle project tree
 noremap <Leader>a :NERDTreeTabsToggle<CR>
+
+" search using rg
+nnoremap <silent> <Leader>f <Cmd>call <SID>SearchRg('', 0)<CR>
+xnoremap <silent> <Leader>f "zy<Cmd>call <SID>SearchRg(@z, 1)<CR>
 
 " file scrolling to the end/beginning
 noremap <C-PageUp> 1G
